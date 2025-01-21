@@ -1,44 +1,45 @@
-# ResearchRanker  
+# Project Title: Web Project
 
-**ResearchRanker** is an intelligent tool designed to assist researchers and academics in evaluating the quality and originality of their work. With advanced features for implementation efficiency comparison and plagiarism detection, this tool ensures your research stands out.  
+## Description
+This project is a web application that utilizes Bootstrap for responsive design and interactive features. It consists of multiple HTML pages and includes necessary CSS and JavaScript files.
 
-## Features  
+## File Structure
+```
+web-project
+├── css
+│   └── bootstrap.min.css
+├── js
+│   └── bootstrap.bundle.min.js
+├── pages
+│   ├── page1.html
+│   ├── page2.html
+│   └── page3.html
+├── index.html
+└── README.md
+```
 
-- **Web Search for Related Papers**  
-  Automatically searches the web for research papers on the same topic to identify relevant works.  
+## Files Overview
 
-- **Efficiency Comparison**  
-  Compares the implementation efficiency of the provided paper with the best papers available online. Helps determine whether the provided approach is the most efficient or if better alternatives exist.  
+- **index.html**: The main entry point of the web application, containing the basic HTML structure and links to the CSS and JavaScript files.
+  
+- **css/bootstrap.min.css**: Minified version of Bootstrap's CSS framework for styling and responsive design.
 
-- **Plagiarism Detection**  
-  Performs a thorough plagiarism check to ensure the originality of the provided research paper.  
+- **js/bootstrap.bundle.min.js**: Minified version of Bootstrap's JavaScript bundle for interactive features.
 
-- **Insights for Improvement**  
-  Offers valuable insights to help researchers refine their methodologies and improve their work.  
+- **pages/page1.html**: A separate HTML page for specific content or functionality.
 
-## Use Case  
-1. **Validate Novelty:** Confirm that your paper offers a unique contribution to your field.  
-2. **Optimize Research:** Identify alternative approaches with better efficiency.  
-3. **Ensure Integrity:** Detect potential plagiarism before submission.  
+- **pages/page2.html**: Another HTML page similar to page1.html.
 
-## How It Works  
-1. Upload your research paper (PDF or text format).  
-2. The tool scans the web for related papers.  
-3. It evaluates implementation efficiency and checks for plagiarism.  
-4. Get a detailed report with efficiency metrics and plagiarism results.  
+- **pages/page3.html**: An additional HTML page providing more content or features.
 
-## Benefits  
-- Save time on manual literature reviews.  
-- Enhance the quality of your research.  
-- Ensure compliance with academic integrity standards.  
+## Setup Instructions
+1. Clone the repository to your local machine.
+2. Open the `index.html` file in a web browser to view the application.
+3. Ensure that the `css` and `js` folders are correctly linked in the `index.html` file.
 
-## Technologies Used  
-- **Python:** Core programming language.  
-- **Machine Learning:** For efficiency analysis and feature comparison.  
-- **Natural Language Processing (NLP):** For understanding research paper content.  
-- **Web Scraping:** To search and retrieve relevant papers.  
+## Usage Guidelines
+- Navigate through the application using the links provided in `index.html`.
+- Modify the content of the pages in the `pages` folder as needed for your specific use case.
 
----
-
-Contributions and feedback are welcome! Let’s make research more efficient and reliable together. 🎓  
-
+## Contributing
+Feel free to fork the repository and submit pull requests for any improvements or additional features.
