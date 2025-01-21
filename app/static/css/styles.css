@@ -1,0 +1,106 @@
+.navbar {
+    transition: all 0.5s ease;
+    background: transparent;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-size: 100% 100%;
+    background-position: 0px 0px;
+}
+
+.navbar-brand {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0) !important;
+    transition: color 0.5s ease;
+}
+
+.nav-link {
+    font-family: 'Kanit', sans-serif;
+    font-weight: 400;
+    color: rgb(0, 0, 0) !important;
+    transition: color 0.5s ease;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(20px) saturate(160%) !important;
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .navbar-brand,
+.navbar.scrolled .nav-link {
+    color: #212529 !important;
+}
+
+.navbar.scrolled .nav-link:hover {
+    color: #0056b3 !important;
+}
+
+.h1{
+
+}
+
+.plagiarism-section,
+.efficiency-section {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 76px;
+}
+
+.section-content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.section-content p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.plagiarism-section {
+    background: linear-gradient(132deg, rgba(255, 0, 0, 0.1) 20%, rgba(255, 196, 113, 0.2) 100%);
+}
+
+.efficiency-section {
+    background: linear-gradient(132deg, rgba(0, 255, 161, 0.1) 20%, rgba(113, 196, 255, 0.2) 100%);
+}
+
+.home-section {
+    height: calc(100vh - 76px);  /* Subtract navbar height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(132deg, rgba(161, 0, 255, 0.1) 20%, rgba(113, 196, 255, 0.2) 100%);
+}
+
+.home-content {
+    text-align: center;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.home-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+.home-content p {
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
