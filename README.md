@@ -5,17 +5,27 @@ This project is a web application that utilizes Bootstrap for responsive design 
 
 ## File Structure
 ```
-web-project
-├── css
-│   └── bootstrap.min.css
-├── js
-│   └── bootstrap.bundle.min.js
-├── pages
-│   ├── page1.html
-│   ├── page2.html
-│   └── page3.html
-├── index.html
-└── README.md
+flask_project/  
+├── app/  
+│   ├── __init__.py  
+│   ├── routes.py  
+│   ├── templates/  
+│   │   └── index.html  
+│   ├── static/  
+│       ├── css/  
+│       │   └── style.css  
+│       ├── js/  
+│       │   └── script.js  
+│       └── images/  
+├── instance/  
+│   └── config.py  
+├── tests/  
+│   └── test_basic.py  
+├── .gitignore  
+├── config.py  
+├── requirements.txt  
+└── run.py  
+
 ```
 
 ## Files Overview
