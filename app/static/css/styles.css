@@ -197,7 +197,7 @@
     cursor: pointer;
   }
   
-  .button-submit {
+  .button-submit-signup,.button-submit-signin {
     margin: 20px 0 10px 0;
     background-color: #151717;
     border: none;
