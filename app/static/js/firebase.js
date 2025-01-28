@@ -19,9 +19,11 @@ function showmessage(message, divId){
 }
  // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const signupbutn = document.getElementById('submitSignUp');
 
-signupbutn.addEventListener('click',(event)=> {
+//sign-up
+const signUpButton = document.getElementById('submitSignUp');
+
+signUpButton.addEventListener('click',(event)=> {
   event.preventDefault();
   const email = document.getElementById('signUpEmail').value;
   const password = document.getElementById('signUpPwd').value;
@@ -42,16 +44,41 @@ signupbutn.addEventListener('click',(event)=> {
       window.location.href="home.html";
     })
     .catch((error)=>{
-      console.error("error writing document",error)
+      console.error("error writing document",error);
     })
   })
   .catch((error)=>{
     const errorCode=error.code;
     if(errorCode == 'auth/email-already-in-use'){
-      showmessage("Email Address Already exists",signUpMessage)
+      showmessage("Email Address Already exists",'signUpMessage');
     }
     else{
-      showmessage("unable to create user",signUpMessage)
+      showmessage("unable to create user",'signUpMessage');
     }
   })
+})
+//sign-in
+const signinButton = document.getElementById("submitSignIn");
+
+signinButton.addEventListener('click',(event)=>{
+  event.preventDefault();
+  const email = document.getElementById('signInEmail').value;
+  const password = document.getElementById('signInPwd').value;
+  const auth= getAuth();
+
+  signInWithEmailAndPassword(auth,email,password)
+  .then((userCred)=>{
+    showmessage("login is successful",'signInMessage');
+    const user =  userCred.user;
+    localStorage.setItem("loggedInUserId",user.uid);
+    window.location.href='home.html';
+  })
+  .catch((error)=>{
+    const errorCode=error.code;
+    if(errorCode=='auth/invalid-credential')
+      showmessage('Incorrect Error or Password','signInMessage');
+    else{
+      showmessage('Account does no exist','signInMessage');
+  }
+})
 })
