@@ -14,6 +14,7 @@
     />
     <script src="../static/js/bootstrap.bundle.min.js"></script>
     <script src="../static/js/script.js"></script>
+    <script  type="module" src="../static/js/firebase.js"></script>
   </head>
   <body class="authenticator-body">
     <div class="authenticator-section" id="authenticator">
@@ -27,9 +28,10 @@
           <div class="inputForm">
             <input
               placeholder="Enter your Email"
-              id="signinEmail"
+              id="signInEmail"
               class="input"
               type="text"
+              name="email"
             />
           </div>
           <div class="flex-column">
@@ -40,12 +42,23 @@
               placeholder="Enter your Password"
               class="input"
               type="password"
+              name="pwd"
+              id="signInPwd"
             />
           </div>
-          <button class="button-submit-signin">Sign In</button>
+          <div
+            id="signInMessage"
+            class="messaageDiv"
+            style="display: none"
+          ></div>
+          <button class="button-submit" id="submitSignIn" type="submit">
+            Sign In
+          </button>
           <p class="p">
             Don't have an account?
-            <button class="button-signup" onclick="signup(event);">Sign Up</button>
+            <button class="button-signup" onclick="signup(event);">
+              Sign Up
+            </button>
           </p>
           <p class="p line">Or With</p>
           <div class="flex-row">
@@ -97,9 +110,10 @@
           <div class="inputForm">
             <input
               placeholder="Enter your Email"
-              id="signupEmail"
+              id="signUpEmail"
               class="input"
               type="text"
+              name="email"
             />
           </div>
           <div class="flex-column">
@@ -110,12 +124,21 @@
               placeholder="Enter your Password"
               class="input"
               type="password"
+              name="pwd"
+              id="signUpPwd"
             />
           </div>
-          <button class="button-submit-signup">Sign Up</button>
+          <div
+            id="signUpMessage"
+            class="messaageDiv"
+            style="display: none"
+          ></div>
+          <button class="button-submit" id="submitSignUp" type="submit">Sign Up</button>
           <p class="p">
             Have an account?
-            <button class="button-signup" onclick="signin(event);">Sign In</button>
+            <button class="button-signup" onclick="signin(event);">
+              Sign In
+            </button>
           </p>
           <p class="p line">Or With</p>
           <div class="flex-row">
@@ -160,9 +183,5 @@
         </form>
       </div>
     </div>
-
-    <script>
-      
-    </script>
   </body>
 </html>

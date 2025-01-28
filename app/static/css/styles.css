@@ -197,7 +197,7 @@
     cursor: pointer;
   }
   
-  .button-submit-signup,.button-submit-signin {
+  .button-submit {
     margin: 20px 0 10px 0;
     background-color: #151717;
     border: none;
@@ -244,5 +244,14 @@
     border-radius: 10px;
 }
 
-
-      
+.messageDiv {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+    font-family: 'Kanit', sans-serif;
+    border: 1px solid red;
+    background-color: #ffe6e6;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+}
