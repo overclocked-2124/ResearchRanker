@@ -41,7 +41,7 @@ signUpButton.addEventListener('click',(event)=> {
     const docRef = doc(db,"users",user.uid);
     setDoc(docRef,userdata)
     .then(()=>{
-      window.location.href="home.html";
+      window.location.href="authenticator.html";
     })
     .catch((error)=>{
       console.error("error writing document",error);
