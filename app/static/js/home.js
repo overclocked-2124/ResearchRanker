@@ -37,6 +37,12 @@ onAuthStateChanged(auth,(User)=>{
     }
 })
 logOutButton.addEventListener('click',(event)=>{
-  event.preventDefault();
-  
+  localStorage.removeItem('loggedInUserId');
+  signOut(auth)
+  .then(()=>{
+    window.location.href='authenticator.html';
+})
+.catch((error)=>{
+    console.error('error signing out',error)
+})
 })
