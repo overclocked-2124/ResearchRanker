@@ -412,3 +412,18 @@ h2 {
   }
 }
 
+@keyframes fadeInTopToBottom {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Apply the animation to the dropdown items */
+.dropdown-item {
+  animation: fadeInTopToBottom 0.3s ease-in-out;
+}

@@ -27,15 +27,21 @@ signUpButton.addEventListener('click',(event)=> {
   event.preventDefault();
   const email = document.getElementById('signUpEmail').value;
   const password = document.getElementById('signUpPwd').value;
+  const Name = document.getElementById('signUpName').value;
 
   const auth=getAuth();
   const db =getFirestore();
 
+  if (Name == "" ){
+    showmessage("Name cannot be empty",'signUpMessage');
+  }
+  else{
   createUserWithEmailAndPassword(auth,email,password)
   .then((userCred)=>{
     const user = userCred.user
     const userdata = {
-      email : email
+      email : email,
+      name : Name
     };
     showmessage('Account created successfully','signUpMessage')
     const docRef = doc(db,"users",user.uid);
@@ -56,7 +62,9 @@ signUpButton.addEventListener('click',(event)=> {
       showmessage("unable to create user",'signUpMessage');
     }
   })
+  }
 })
+
 //sign-in
 const signinButton = document.getElementById("submitSignIn");
 
@@ -81,4 +89,11 @@ signinButton.addEventListener('click',(event)=>{
       showmessage('Account does no exist','signInMessage');
   }
 })
+})
+
+const logOutButton = document.getElementById("Logout");
+
+logOutButton.addEventListener('click',(event)=>{
+  event.preventDefault();
+
 })
