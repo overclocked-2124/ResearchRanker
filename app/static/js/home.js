@@ -17,6 +17,7 @@ const app = initializeApp(firebaseConfig);
 const auth=getAuth();
 const db =getFirestore();
 const logOutButton = document.getElementById("Logout");
+document.getElementById("nametag").style.display='none';
 
 
 onAuthStateChanged(auth,(User)=>{
@@ -27,6 +28,7 @@ onAuthStateChanged(auth,(User)=>{
         .then((docSnap)=>{
             if(docSnap.exists()){
                 const userData = docSnap.data()
+                document.getElementById("nametag").style.display='block';
             document.getElementById("nametag").innerText=userData.name;
             document.getElementById('Login').style.display='none';
             }

@@ -74,21 +74,23 @@ h2 {
   opacity: 0.8;
 }
 
-.plagiarism-section {
+.plagiarism-body {
   background: linear-gradient(
     132deg,
     rgba(255, 0, 0, 0.1) 20%,
     rgba(255, 196, 113, 0.2) 100%
+    
   );
 }
 
-.efficiency-section {
-  background: linear-gradient(
-    132deg,
-    rgba(0, 255, 161, 0.1) 20%,
-    rgba(113, 196, 255, 0.2) 100%
-  );
+.efficiency-body {
+  background: radial-gradient(
+  circle, 
+  rgba(0, 255, 161, 0.15) 30%, 
+  rgba(113, 196, 255, 0.25) 100%
+);
 }
+
 .authenticator-body {
   background-size: 100% 100%;
   background-position: center;
@@ -141,8 +143,8 @@ h2 {
   font-size: 2rem;
 }
 
-.home-section {
-  height: calc(100vh - 76px); /* Subtract navbar height */
+.home-body {
+  height: 100vh;
   width: 100%;
   display: flex;
   align-items: center;
