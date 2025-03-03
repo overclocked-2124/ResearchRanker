@@ -127,8 +127,10 @@ body{
 }
 
 .block1-container1{
+    margin-left:120px;
+    margin-right:180px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
