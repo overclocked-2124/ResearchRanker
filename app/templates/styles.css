@@ -141,7 +141,6 @@ body{
     justify-content: left;
     gap: 2rem;
     text-align: left;
-    align-items: center;
 }
 .tool-discription-list li{
     width: 350px;
