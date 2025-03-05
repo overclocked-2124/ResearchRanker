@@ -186,6 +186,7 @@ body{
     font-size: 60px;
     font-weight: 600;
     color: #F9E0D9;
+    margin-bottom: 30px;
 }
 
 .title-section-2-orange{
@@ -230,7 +231,7 @@ body{
 }
 
 .block2-ai-discription-list .block2-ai-discription-title{
-    font-size: 26px;
+    font-size: 32px;
     font-weight: 700;
     text-align: center;
 }
@@ -258,4 +259,19 @@ body{
 #croc{
     height: auto;
     width: 100px;
+}
+
+.discription-section-2-container{
+    display: flex;
+    justify-content: left;
+    gap: 6rem;
+}
+
+
+.discription-section-2{
+    margin-left: 70px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    color: #F9E0D9;
+    font-weight: 400;
 }
