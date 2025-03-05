@@ -153,7 +153,7 @@ body{
 }
 
 .tool-discription-list li:hover{
-    background-color: #EFA9B3;
+    background-color: #54C7C9;
 }
 
 .tool-discription-list .tool-discription{
@@ -276,7 +276,7 @@ body{
     font-size: 23px;
     text-decoration: none;
     display: inline-block;
-    background-color: #2C8A8C;
+    background-color: #216869;
     color: white;
     border-radius: 5px;
     padding: 10px 20px;
@@ -286,5 +286,5 @@ body{
 
 
 .choose-model:hover{
-    background-color: #216869;
+    background-color: #2C8A8C;
 }
