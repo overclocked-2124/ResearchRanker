@@ -185,7 +185,7 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size: 60px;
     font-weight: 600;
-    color: #DC4159;
+    color: #2C8A8C;
     margin-bottom: 30px;
 }
 
@@ -211,33 +211,26 @@ body{
 
 .block2-ai-discription-list li{
     width: 250px;
-    border: 4px solid #DC4159;
+    border: 4px solid #2C8A8C;
     border-radius: 40px ;
     padding: 18px; 
     
 }
 
-.block2-ai-discription-list li:hover{
-    background-color: #216869;
-}
-
-.block2-ai-discription-list .block2-ai-discription-a{
-    color: #F9E0D9;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-}
 
 .block2-ai-discription-list .block2-ai-discription-title{
     font-size: 32px;
     font-weight: 700;
     text-align: center;
-    color: #DC4159;
+    color: #2C8A8C;
     
 }
 
 .block2-ai-discription-list .block2-ai-discription-explanation{
     font-size: 20px;
     font-weight: 400;
+    color: #F9E0D9;
+    font-family: 'Roboto', sans-serif;
 }
 
 .block2-ai-discription-list li img{
@@ -283,7 +276,7 @@ body{
     font-size: 23px;
     text-decoration: none;
     display: inline-block;
-    background-color: #DC4159;
+    background-color: #2C8A8C;
     color: white;
     border-radius: 5px;
     padding: 10px 20px;
@@ -293,5 +286,5 @@ body{
 
 
 .choose-model:hover{
-    background-color: #e76478;
+    background-color: #216869;
 }
