@@ -153,7 +153,7 @@ body{
 }
 
 .tool-discription-list li:hover{
-    background-color: #54C7C9;
+    background-color: wheat;
 }
 
 .tool-discription-list .tool-discription{
@@ -278,7 +278,7 @@ body{
     text-decoration: none;
     display: inline-block;
     background-color: #216869;
-    color: white;
+    color: #F9E0D9;
     border-radius: 5px;
     padding: 10px 20px;
     text-align: center;
@@ -288,4 +288,50 @@ body{
 
 .choose-model:hover{
     background-color: #2C8A8C;
+}
+
+.block3{
+    background-color: #F9E0D9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+.block3 .quote{
+    color: #420C14;
+    width: 1200px;
+    font-size: 85px;
+    font-family: "Cookie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: center;
+    border: 9px solid #420C14;
+    border-radius: 40px ;
+    padding: 40px;
+}
+
+.block3 .quote .quote-by{
+    color: #420C14;
+    width: 1200px;
+    font-size: 55px;
+    font-family: "Cookie", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-align: right;
+}
+
+.block4{
+    padding-top:30px ;
+    padding-bottom: 30px;
+    background-color: #216869;
+}
+
+.block4 .copyright{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 19px;
+    color: #F9E0D9;
 }
