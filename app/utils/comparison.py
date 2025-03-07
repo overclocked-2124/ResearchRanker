@@ -12,6 +12,7 @@ def comparePDF(reference,user,selected_model):
        - Innovation: Evaluate the novelty of the approaches.
        - Effectiveness: Analyze the results/accuracy.
     3. Conclusion: Determine if the user's method is better and explain why or why not.
+    4.Do not give any introductory statement or anything extra at the end.Only the analysis.
     Be concise, clear, and objective in your analysis.
     """,
     prompt=f"""
