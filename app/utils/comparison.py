@@ -1,8 +1,8 @@
 import ollama
 from ollama import chat
 
-def comparePDF(reference,user):
-    generated_text =ollama.generate(model="llama3.2",
+def comparePDF(reference,user,selected_model):
+    generated_text =ollama.generate(model=selected_model,
     system="""
     You are a research methodology expert. Your task is to compare two research papers and analyze their methodologies.
     Focus on the following aspects:
@@ -26,8 +26,8 @@ def comparePDF(reference,user):
 
     return generated_text
 
-def compareTemplate(template,user):
-    generated_text=ollama.generate(model="llama3.2",
+def compareTemplate(template,user,selected_model):
+    generated_text=ollama.generate(model=selected_model,
     system="""## PDF Structure Assessment System Prompt
 
     **Objective:** Analyze and compare structural elements between two PDF documents (template vs user-submitted) to generate a 1-10 alignment rating based solely on formatting and document structure.
