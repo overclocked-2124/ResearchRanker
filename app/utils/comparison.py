@@ -67,6 +67,8 @@ def compareTemplate(template,user,selected_model):
     - Top 3 successful alignments
     - Confidence score (0-100%)
     
+    4.Do not give any introductory statement or anything extra at the end.Only the analysis.
+    
     **Example Output:**
     `Rating: 7.8/10  
     Alignment: 78% structural match  
@@ -80,18 +82,18 @@ def compareTemplate(template,user,selected_model):
     - Prioritize positional data over semantic content
     - Disregard text content meaning entirely of the user pdf but the template pdf has hints for 
       what the block/paragraph should contain so use that to asses if the user pdf has the required content at the best place.
-        """,
+      
+      
+      
+        """
+                                   ,
     prompt=f"""
     [STRUCTURAL ANALYSIS REQUEST]
     Compare formatting and document structure between:
     - Template PDF: {template}
     - User PDF: {user}
     
-    Analyze only these non-content aspects:
-    1. Visual hierarchy and element positioning
-    2. Style consistency across sections
-    3. Page layout characteristics
-    4. Document object relationships
+    Do not give any introductory statement or anything extra at the end.Only the analysis.
     
     Return assessment using the exact format:
     Rating: [X]/10  
@@ -100,10 +102,9 @@ def compareTemplate(template,user,selected_model):
     Matches: 1)... 2)... 3)...  
     Confidence: [Z]%
     """
-    #,options={
-        #"temperature": 0.3,
-        #"top_p": 0.9,
-        #"stop": ["Rating:"]
-        #}
+    ,options={
+        "temperature": 0.3,
+        "top_p": 0.9,
+        }
     ,stream=False)['response']
     return generated_text
