@@ -4,24 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tools - Research Ranker</title>
-    <link rel="stylesheet" href="/app/templates/styles-index.css">
-    <link rel="stylesheet" href="/app/templates/styles-tools.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style-tools.css') }}">
 </head>
 <body>
     <div class="block1">
-        <nav>
+        <nav >
             <div class="nav-container">
-                <ul class="logobar">
-                    <li class="logo"><img width="75px" height="75px" src="images/Logo.png"></li>
+                <ul class = "logobar">
+                    <li class="logo"><img width="75px" height="75px" src="{{url_for('static', filename='images/Logo.png')}}"></li>
                     <li id="title1">Research</li>
                     <li id="title2">Rankers</li>     
                 </ul>
-                <ul class="navbar">
-                    <li><a href="index.html" id="overview">Overview</a></li> 
-                    <li><a href="aimodels.html" id="aimodels">AI Models</a></li>
-                    <li><a href="tools.html" id="tools">Tools</a></li>
-                    <li><a href="signup.html" class="sign-up">Sign Up</a></li>  
+                <ul class = "navbar">
+                    <li ><a{%if logged_in %} href="" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
+                    <li ><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} id="aimodels">AI Models</a></li>
+                    <li ><a {%if logged_in %} href="tools" {%else%} href="signup"{%endif%} id="tools">Tools</a></li>
+                {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign Up</a></li>{%endif%}  
                 </ul>
+                
             </div>
         </nav>
     </div>
