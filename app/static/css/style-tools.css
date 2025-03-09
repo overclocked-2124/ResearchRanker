@@ -1,0 +1,45 @@
+.tools-container {
+    text-align: center;
+    padding: 50px 20px;
+    background-color: #F9E0D9; /* Add background color */
+}
+
+.tools-flexbox {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    backdrop-filter: blur(10px); /* Add background blur */
+}
+
+.tool-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+    width: 250px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tool-card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.tool-card p {
+    font-size: 1em;
+    color: #555;
+}
+
+.tool-link {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    color: white;
+    background-color: teal;
+    text-decoration: none;
+    border-radius: 5px;
+}

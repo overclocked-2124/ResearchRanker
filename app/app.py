@@ -123,5 +123,14 @@ def logout():
     flash('You have been logged out.')
     return redirect(url_for('home'))
 
+
+
+@app.route("/tools")
+def tools():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("tools.html",logged_in=logged_in, username=username)
+    
+
 if __name__ == "__main__":
     app.run(debug=True)
