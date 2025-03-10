@@ -34,7 +34,7 @@
                 <li ><a{%if logged_in %} href="" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
                 <li ><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} id="aimodels">AI Models</a></li>
                 <li ><a {%if logged_in %} href="tools" {%else%} href="signup"{%endif%} id="tools">Tools</a></li>
-            {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign Up</a></li>{%endif%}  
+            {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign In</a></li>{%endif%}  
             </ul>
             
         </div>
@@ -43,7 +43,6 @@
         <div class="tagline"><div class="tagline-green" >Intelligent AI-powered  </div> <br>Research Refinement <br>At Your <div class="tagline-green" >Fingertips.</div></div>
         <div class="block1-img"><img src="{{url_for('static', filename='images/owl.png')}}" width="230px"> </div>
     </div>
-    {%if logged_in%} {%else%} <a class="sign-up" href="signup" style="margin-left: 500px; margin-top:5px" >Sign Up</a> {%endif%} 
     
         <ul class="tool-discription-list">
             <li><a href="/compare" class="tool-discription"><div class="tool-discription-title" >Compare Your Paper</div>
