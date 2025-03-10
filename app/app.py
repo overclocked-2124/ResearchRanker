@@ -131,6 +131,10 @@ def tools():
     username = session.get('username', None)
     return render_template("tools.html",logged_in=logged_in, username=username)
     
+@app.route("/compare")
+def compare():
+    return render_template("compare.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,6 +1,7 @@
 .tools-container {
     text-align: center;
-    padding: 50px 20px;
+    padding: 0px 20px;
+    padding-bottom: 100px;
     background-color: #F9E0D9; /* Add background color */
     margin-top: 0%;
 }
@@ -10,7 +11,7 @@
     font-weight: 800;
     font-size: 48px;
     color: #420c14;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
     margin-top: 0px;
 }
 
