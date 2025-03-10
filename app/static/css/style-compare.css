@@ -1,0 +1,371 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #F9E0D9;
+    color: #420C14;
+    line-height: 1.6;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(115, 44, 44, 0.15);
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(115, 44, 44, 0.1);
+}
+
+header h1 {
+    color: #732C2C;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header p {
+    color: #420C14;
+    opacity: 0.8;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.upload-section-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.upload-section {
+    flex: 1;
+}
+
+.upload-section h2 {
+    color: #216869;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.upload-container {
+    border: 2px dashed #732C2C;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.upload-container:hover {
+    border-color: #216869;
+}
+
+.upload-area {
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background-color: rgba(249, 224, 217, 0.3);
+}
+
+.upload-area.highlight {
+    background-color: rgba(33, 104, 105, 0.1);
+}
+
+.upload-area i {
+    font-size: 48px;
+    color: #732C2C;
+    margin-bottom: 15px;
+}
+
+.upload-area h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #420C14;
+}
+
+.upload-btn {
+    display: inline-block;
+    background-color: #216869;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    margin: 10px 0;
+    transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+    background-color: #184d4e;
+}
+
+.file-types {
+    font-size: 0.8rem;
+    color: #732C2C;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.file-info {
+    padding: 15px;
+    background-color: white;
+}
+
+.no-file {
+    text-align: center;
+    color: #732C2C;
+    opacity: 0.6;
+    padding: 10px;
+}
+
+.file-details {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(249, 224, 217, 0.2);
+    border-radius: 8px;
+}
+
+.file-preview {
+    width: 40px;
+    height: 40px;
+    background-color: #F9E0D9;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.file-preview i {
+    color: #732C2C;
+    font-size: 20px;
+}
+
+.file-metadata {
+    flex-grow: 1;
+}
+
+.file-name {
+    font-weight: 500;
+    color: #420C14;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+.file-size {
+    font-size: 0.8rem;
+    color: #732C2C;
+    opacity: 0.7;
+}
+
+.remove-file {
+    background-color: transparent;
+    border: none;
+    color: #732C2C;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.remove-file:hover {
+    background-color: rgba(115, 44, 44, 0.1);
+}
+
+.results-section {
+    margin-top: 20px;
+}
+
+.results-section h2 {
+    color: #216869;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.results-container {
+    border: 2px solid #732C2C;
+    border-radius: 10px;
+    overflow: hidden;
+    min-height: 300px;
+    background-color: white;
+}
+
+.results-placeholder {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    text-align: center;
+    color: #732C2C;
+    opacity: 0.7;
+}
+
+.results-placeholder i {
+    font-size: 64px;
+    margin-bottom: 20px;
+    color: #216869;
+}
+
+.results-content {
+    display: none;
+    padding: 20px;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+    color: #732C2C;
+}
+
+.comparison-result h3 {
+    color: #216869;
+    margin: 15px 0 10px;
+    font-size: 1.2rem;
+}
+
+.comparison-result ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.comparison-result li {
+    margin-bottom: 5px;
+}
+
+.similarity-meter {
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    height: 25px;
+    position: relative;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.similarity-bar {
+    height: 100%;
+    background-color: #216869;
+    border-radius: 5px;
+    transition: width 1s ease-in-out;
+}
+
+.similarity-meter span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 600;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.submission-container {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(115, 44, 44, 0.1);
+}
+
+.submit-btn {
+    background-color: #216869;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+    background-color: #184d4e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(33, 104, 105, 0.3);
+}
+
+.submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.submission-note {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    color: #732C2C;
+    opacity: 0.7;
+}
+
+@media (max-width: 900px) {
+    .upload-section-container {
+        flex-direction: column;
+    }
+    
+    .upload-section {
+        margin-bottom: 20px;
+    }
+    
+    .container {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .upload-area {
+        padding: 20px;
+    }
+    
+    .file-name {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .file-name {
+        max-width: 150px;
+    }
+    
+    .upload-area i {
+        font-size: 36px;
+    }
+    
+    .upload-area h3 {
+        font-size: 1rem;
+    }
+}
