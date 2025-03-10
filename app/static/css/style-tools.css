@@ -2,33 +2,50 @@
     text-align: center;
     padding: 50px 20px;
     background-color: #F9E0D9; /* Add background color */
+    margin-top: 0%;
+}
+
+.tools-container h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    color: #420c14;
+    margin-bottom: 40px;
+    margin-top: 0px;
 }
 
 .tools-flexbox {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    backdrop-filter: blur(10px); /* Add background blur */
 }
 
 .tool-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 20px;
-    margin: 10px;
+    margin: 5px;  
     width: 250px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 4px solid #2C8A8C;
+    border-radius: 20px;
+    border-width: 5px;
 }
+
 
 .tool-card h2 {
     font-size: 1.5em;
     margin-bottom: 10px;
+    font-family: 'poppins';
+    font-weight: 900;
+    color: #420c14;
 }
 
 .tool-card p {
     font-size: 1em;
-    color: #555;
+    color:#732c2c;
+    font-family: monospace;
+    font-weight: 900 ;
+    font-size: large;
 }
 
 .tool-link {
@@ -42,4 +59,27 @@
     background-color: teal;
     text-decoration: none;
     border-radius: 5px;
+}
+
+nav{
+    margin-top: 0;
+    justify-content: space-between;
+    align-items: center;
+    padding:  10px 20px ;
+    margin-bottom: 40px;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar {
+    display: flex; 
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    flex-wrap: wrap;
+    justify-content: right;
+    gap: 2rem;
 }
