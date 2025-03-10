@@ -5,7 +5,9 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
-
+from bs4 import BeautifulSoup
+import ollama
+import markdown
 # App configuration
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = '25354b506e275410240b8376094ff9bd'
@@ -26,7 +28,7 @@ class User(db.Model):
     def __init__(self, username, email, password):
         self.username = username
         self.email = email
-        self.password = generate_password_hash(password, method='sha256')
+        self.password = generate_password_hash(password)
     
     def check_password(self, password):
         return check_password_hash(self.password, password)
@@ -59,7 +61,16 @@ def home():
     username = session.get('username', None)
     # Debug print to check session state
     print(f"Session state: logged_in={logged_in}, username={username}")
-    return render_template("index.html", logged_in=logged_in, username=username)
+    
+
+    response = ollama.generate(model="tinyllama:1.1b", prompt="Return one light thought on research with author name. Unique thought each time.One line fewer words.",options={"max_tokens":15})
+    response_dict = response.model_dump()  # Convert to dictionary
+    markdown_res = markdown.markdown(response_dict.get("response", "")) 
+    markdown_res=BeautifulSoup(markdown_res,"html.parser").get_text()# ✅ Correct extraction
+
+
+    
+    return render_template("index.html", logged_in=logged_in, username=username,thought=markdown_res)
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
