@@ -158,8 +158,15 @@ def tools():
     
 @app.route("/compare")
 def compare():
-    return render_template("compare.html",title="ResearchRankers-Compare",css_path='style-compare')
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("compare.html",logged_in=logged_in, username=username,title="ResearchRankers-Compare",css_path='style-compare')
 
+@app.route("/templatechecker")
+def templatechecker():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("template-checker.html",logged_in=logged_in, username=username,title="ResearchRankers-Template_checking",css_path='style-template-checker')
 
 if __name__ == "__main__":
     app.run(debug=True)
