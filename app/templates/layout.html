@@ -31,7 +31,7 @@
               <li id="title2">Rankers</li>     
           </ul>
           <ul class = "navbar">
-              <li ><a{%if logged_in %} href="" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
+              <li ><a{%if logged_in %} href="home" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
               <li ><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} id="aimodels">AI Models</a></li>
               <li ><a {%if logged_in %} href="tools" {%else%} href="signup"{%endif%} id="tools">Tools</a></li>
           {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign In</a></li>{%endif%}  
