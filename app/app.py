@@ -63,14 +63,9 @@ def home():
     print(f"Session state: logged_in={logged_in}, username={username}")
     
 
-    response = ollama.generate(model="tinyllama:1.1b", prompt="Return one light thought on research with author name. Unique thought each time.One line fewer words.",options={"max_tokens":15})
-    response_dict = response.model_dump()  # Convert to dictionary
-    markdown_res = markdown.markdown(response_dict.get("response", "")) 
-    markdown_res=BeautifulSoup(markdown_res,"html.parser").get_text()# ✅ Correct extraction
-
-
+    response = ollama.generate(model="tinyllama:1.1b", prompt="Return one light thought on research with author name.quotes should be off only 10 words.",stream=False)['response']
     
-    return render_template("index.html", logged_in=logged_in, username=username,thought=markdown_res)
+    return render_template("index.html", logged_in=logged_in, username=username,thought=response,title="ResearchRankers",css_path='style-index')
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
@@ -99,7 +94,7 @@ def signup():
         flash('Account created successfully!')
         return redirect(url_for('home'))
     
-    return render_template("signup.html")
+    return render_template("signup.html",title="ResearchRankers-Sign In",css_path='style-signup')
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -140,11 +135,11 @@ def logout():
 def tools():
     logged_in = session.get('logged_in', False)
     username = session.get('username', None)
-    return render_template("tools.html",logged_in=logged_in, username=username)
+    return render_template("tools.html",logged_in=logged_in, username=username,title="ResearchRankers-Tools",css_path='style-tools')
     
 @app.route("/compare")
 def compare():
-    return render_template("compare.html")
+    return render_template("compare.html",title="ResearchRankers-Compare",css_path='style-compare')
 
 
 if __name__ == "__main__":

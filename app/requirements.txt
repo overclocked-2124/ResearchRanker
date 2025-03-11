@@ -8,3 +8,4 @@ pypdf2
 flask
 ollama
 bs4
+markdown
