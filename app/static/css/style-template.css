@@ -56,3 +56,73 @@ nav{
     font-size: 19px;
     color: #F9E0D9;
 }
+
+#title1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+    color: #420c14;
+    font-weight: 800;
+}
+#title2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 27px;
+    color: #732c2c;
+    font-weight: 800;
+}
+
+#overview{
+    color: #216869;
+}
+
+#aimodels{
+    color: #732C2C;
+    border: 3px solid #732C2C;
+    display: inline-block;
+    padding: 6px;   
+}
+
+#tools{
+    display: inline-block;
+    background-color: #420c14;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+#tools:hover{
+    background-color: #6a1c1c;
+}
+
+.sign-up{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #216869;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sign-up:hover{
+    background-color: #32A0A2;
+}
+
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.block1{
+    background-color: #F9E0D9;
+    margin: 0;
+    padding: 10px 10px;
+}
