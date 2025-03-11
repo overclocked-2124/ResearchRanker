@@ -70,15 +70,30 @@ def home():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        # Get form data
-        username = request.form.get('name')
+        # Get form data - using 'name' as sent by the form
+        username = request.form.get('name')  # Note: 'name' not 'username'
         email = request.form.get('email')
         password = request.form.get('password')
+        
+        # Validate field lengths manually since we're not using WTForms
+        if len(username) < 10 or len(username) > 25:
+            flash('Username must be between 10 and 25 characters.')
+            return redirect(url_for('signup'))
+            
+        if len(password) < 8:
+            flash('Password must be at least 8 characters.')
+            return redirect(url_for('signup'))
         
         # Check if user already exists
         user = User.query.filter_by(email=email).first()
         if user:
             flash('Email already exists. Please log in instead.')
+            return redirect(url_for('signup'))
+        
+        # Check if username exists
+        user = User.query.filter_by(username=username).first()
+        if user:
+            flash('Username already taken. Please try another.')
             return redirect(url_for('signup'))
         
         # Create new user
@@ -94,7 +109,7 @@ def signup():
         flash('Account created successfully!')
         return redirect(url_for('home'))
     
-    return render_template("signup.html",title="ResearchRankers-Sign In",css_path='style-signup')
+    return render_template("signup.html", title="ResearchRankers-Sign Up", css_path='style-signup')
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
@@ -107,8 +122,9 @@ def login():
         
         # Check if user exists and password is correct
         if not user or not user.check_password(password):
-            flash('Please check your login details and try again.')
-            return redirect(url_for('signup'))
+            flash('Invalid email or password. Please try again.')
+            # Stay on login form rather than redirecting to signup
+            return render_template("signup.html", title="ResearchRankers-Login", css_path='style-signup')
         
         # Set session variables
         session['logged_in'] = True
@@ -118,7 +134,10 @@ def login():
         flash('Logged in successfully!')
         return redirect(url_for('home'))
     
-    return redirect(url_for('signup'))
+    # For GET requests, show the signup page (which contains the login form)
+    return render_template("signup.html", title="ResearchRankers-Sign In", css_path='style-signup')
+
+
 
 @app.route("/logout")
 def logout():
@@ -139,8 +158,15 @@ def tools():
     
 @app.route("/compare")
 def compare():
-    return render_template("compare.html",title="ResearchRankers-Compare",css_path='style-compare')
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("compare.html",logged_in=logged_in, username=username,title="ResearchRankers-Compare",css_path='style-compare')
 
+@app.route("/templatechecker")
+def templatechecker():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("template-checker.html",logged_in=logged_in, username=username,title="ResearchRankers-Template_checking",css_path='style-template-checker')
 
 if __name__ == "__main__":
     app.run(debug=True)
