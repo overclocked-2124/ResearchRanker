@@ -10,12 +10,17 @@
 body {
     background-color: #F9E0D9;
     color: #420C14;
-    line-height: 1.6;
-    padding: 20px;
-    min-height: 100vh;
+}
+
+.flex-container{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #F9E0D9;
+    color: #420C14;
+    line-height: 1.6;
+    padding: 10px;
+    min-height: 100vh;
 }
 
 .container {
@@ -25,6 +30,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(115, 44, 44, 0.15);
     padding: 30px;
+    margin-bottom: 50px;
 }
 
 header {

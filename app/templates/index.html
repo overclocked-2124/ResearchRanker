@@ -1,22 +1,7 @@
 {% extends "layout.html" %}
 {% block content%}
     <div class="block1">
-    <nav >
-        <div class="nav-container">
-            <ul class = "logobar">
-                <li class="logo"><img width="75px" height="75px" src="{{url_for('static', filename='images/Logo.png')}}"></li>
-                <li id="title1">Research</li>
-                <li id="title2">Rankers</li>     
-            </ul>
-            <ul class = "navbar">
-                <li ><a{%if logged_in %} href="" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
-                <li ><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} id="aimodels">AI Models</a></li>
-                <li ><a {%if logged_in %} href="tools" {%else%} href="signup"{%endif%} id="tools">Tools</a></li>
-            {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign In</a></li>{%endif%}  
-            </ul>
-            
-        </div>
-    </nav>
+    
     <div class="block1-container1">
         <div class="tagline"><div class="tagline-green" >Intelligent AI-powered  </div> <br>Research Refinement <br>At Your <div class="tagline-green" >Fingertips.</div></div>
         <div class="block1-img"><img src="{{url_for('static', filename='images/owl.png')}}" width="230px"> </div>
