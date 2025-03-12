@@ -8,11 +8,21 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import ollama
 import markdown
+import os
+from werkzeug.utils import secure_filename
+
 # App configuration
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = '25354b506e275410240b8376094ff9bd'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Configure the upload folder
+app.config['UPLOAD_FOLDER'] = 'static/uploads'  
+app.config['MAX_CONTENT_LENGTH'] = 32 * 1024 * 1024  # 32MB limit
+
+# Create upload folder if it doesn't exist
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Initialize database
 db = SQLAlchemy(app)
@@ -167,6 +177,54 @@ def templatechecker():
     logged_in = session.get('logged_in', False)
     username = session.get('username', None)
     return render_template("template-checker.html",logged_in=logged_in, username=username,title="ResearchRankers-Template_checking",css_path='style-template-checker')
+
+
+#Uploading files for templatechecker
+@app.route("/check-template",methods=['POST'])
+def check_template():
+    if 'user_file' not in request.files or 'template_file' not in request.files:
+        return redirect(url_for('index'))
+    
+    user_file=request.files['user_file']
+    template_file=request.files['template_file']
+
+    if user_file.filename =='' or template_file.filename=='':
+        return redirect(url_for('index'))
+    user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
+    template_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(template_file.filename))
+    
+    user_file.save(user_filepath)
+    template_file.save(template_filepath)
+    
+    #add the processing mechnaisem here
+    
+    os.remove(user_filepath)
+    os.remove(template_filepath)
+
+#Uploading files for compare
+@app.route("/compare-papers",methods=['POST'])
+def compare_papers():
+    if 'user_file' not in request.files or 'reference_file' not in request.files:
+        return redirect(url_for('index'))
+    
+    user_file=request.files['user_file']
+    reference_file=request.files['reference_file']
+
+    if user_file.filename =='' or reference_file.filename=='':
+        return redirect(url_for('index'))
+
+    user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
+    reference_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(reference_file.filename))
+    
+    user_file.save(user_filepath)
+    reference_file.save(reference_filepath)
+    
+    
+    #add the processing mechnaisem here
+    
+    os.remove(user_filepath)
+    os.remove(reference_filepath)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
