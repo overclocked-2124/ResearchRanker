@@ -8,11 +8,19 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import ollama
 import markdown
+import os
+
 # App configuration
 app = Flask(__name__, static_folder='static')
 app.config['SECRET_KEY'] = '25354b506e275410240b8376094ff9bd'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Users.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Configure the upload folder
+app.config['UPLOAD_FOLDER'] = 'static/uploads'  
+
+# Create upload folder if it doesn't exist
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Initialize database
 db = SQLAlchemy(app)

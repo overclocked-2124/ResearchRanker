@@ -8,195 +8,52 @@
         </header>
 
         <main>
-            <div class="upload-section-container">
-                <section class="upload-section">
-                    <h2>User Research Paper</h2>
-                    <div class="upload-container" id="user-research-upload">
-                        <div class="upload-area">
-                            <i class="fas fa-file-upload"></i>
-                            <h3>Drag & Drop your file here</h3>
-                            <p>or</p>
-                            <label for="user-research-file" class="upload-btn">Browse Files</label>
-                            <input type="file" id="user-research-file" hidden accept=".pdf,.doc,.docx">
-                            <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+            <!-- Add form with proper attributes -->
+            <form action="/compare" method="POST" enctype="multipart/form-data">
+                <div class="upload-section-container">
+                    <section class="upload-section">
+                        <h2>User Research Paper</h2>
+                        <div class="upload-container">
+                            <div class="upload-area">
+                                <!-- Simplified file input -->
+                                <h3>Select your research paper</h3>
+                                <input type="file" id="user-research-file" name="user_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
                         </div>
-                        <div class="file-info" id="user-research-info">
-                            <div class="no-file">No file selected</div>
-                        </div>
-                    </div>
-                </section>
+                    </section>
 
-                <section class="upload-section">
-                    <h2>Reference Research Paper</h2>
-                    <div class="upload-container" id="reference-research-upload">
-                        <div class="upload-area">
-                            <i class="fas fa-file-upload"></i>
-                            <h3>Drag & Drop your file here</h3>
-                            <p>or</p>
-                            <label for="reference-research-file" class="upload-btn">Browse Files</label>
-                            <input type="file" id="reference-research-file" hidden accept=".pdf,.doc,.docx">
-                            <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                    <section class="upload-section">
+                        <h2>Reference Research Paper</h2>
+                        <div class="upload-container">
+                            <div class="upload-area">
+                                <!-- Simplified file input (fixed typo in type attribute) -->
+                                <h3>Select reference paper</h3>
+                                <input type="file" id="reference-research-file" name="reference_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
                         </div>
-                        <div class="file-info" id="reference-research-info">
-                            <div class="no-file">No file selected</div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+                    </section>
+                </div>
 
+                <div class="submission-container">
+                    <!-- Regular submit button -->
+                    <button type="submit" class="submit-btn">Compare Documents</button>
+                    <p class="submission-note">Please upload both documents for comparison</p>
+                </div>
+            </form>
+
+            <!-- Static message about results -->
             <section class="results-section">
                 <h2>AI Comparison Results</h2>
                 <div class="results-container">
                     <div class="results-placeholder">
-                        <i class="fas fa-robot"></i>
-                        <h3>AI-Generated Comparison</h3>
-                        <p>Upload both papers to generate a comparison analysis</p>
+                        <h3>Results will appear after submission</h3>
+                        <p>Upload both papers and click "Compare Documents" to see results</p>
                     </div>
-                    <div class="results-content" id="comparison-results">
-                        <!-- AI comparison results will appear here -->
-                    </div>
-                </section>
-
-            <div class="submission-container">
-                <button class="submit-btn" disabled>Compare Documents</button>
-                <p class="submission-note">Please upload both documents to enable comparison</p>
-            </div>
+                </div>
+            </section>
         </main>
     </div>
 </div>
-    <script>
-        // File upload functionality
-        function handleFileUpload(fileInputId, fileInfoId, dropAreaId) {
-            const fileInput = document.getElementById(fileInputId);
-            const fileInfo = document.getElementById(fileInfoId);
-            const dropArea = document.getElementById(dropAreaId);
-            
-            // Handle file selection
-            fileInput.addEventListener('change', function() {
-                if (this.files.length > 0) {
-                    updateFileInfo(this.files[0], fileInfo);
-                    checkSubmitButton();
-                }
-            });
-            
-            // Drag and drop functionality
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, preventDefaults, false);
-            });
-            
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            
-            ['dragenter', 'dragover'].forEach(eventName => {
-                dropArea.addEventListener(eventName, highlight, false);
-            });
-            
-            ['dragleave', 'drop'].forEach(eventName => {
-                dropArea.addEventListener(eventName, unhighlight, false);
-            });
-            
-            function highlight() {
-                dropArea.classList.add('highlight');
-            }
-            
-            function unhighlight() {
-                dropArea.classList.remove('highlight');
-            }
-            
-            dropArea.addEventListener('drop', handleDrop, false);
-            
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const file = dt.files[0];
-                fileInput.files = dt.files;
-                updateFileInfo(file, fileInfo);
-                checkSubmitButton();
-            }
-        }
-        
-        function updateFileInfo(file, fileInfoElement) {
-            const fileSize = (file.size / 1024 / 1024).toFixed(2);
-            fileInfoElement.innerHTML = `
-                <div class="file-details">
-                    <div class="file-preview">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="file-metadata">
-                        <div class="file-name">${file.name}</div>
-                        <div class="file-size">${fileSize} MB</div>
-                    </div>
-                    <button class="remove-file" onclick="removeFile(this)">
-                        <i class="fas fa-times"></i>
-                    </button>
-                </div>
-            `;
-        }
-        
-        function removeFile(button) {
-            const fileDetails = button.closest('.file-details');
-            const fileInfo = fileDetails.parentElement;
-            const uploadContainer = fileInfo.parentElement;
-            const inputId = uploadContainer.id === 'user-research-upload' ? 'user-research-file' : 'reference-research-file';
-            
-            document.getElementById(inputId).value = '';
-            fileInfo.innerHTML = '<div class="no-file">No file selected</div>';
-            checkSubmitButton();
-        }
-        
-        function checkSubmitButton() {
-            const userFile = document.getElementById('user-research-file').files.length > 0;
-            const referenceFile = document.getElementById('reference-research-file').files.length > 0;
-            const submitBtn = document.querySelector('.submit-btn');
-            
-            submitBtn.disabled = !(userFile && referenceFile);
-            
-            // Show placeholder when files are not uploaded
-            const resultsPlaceholder = document.querySelector('.results-placeholder');
-            const resultsContent = document.getElementById('comparison-results');
-            
-            if (userFile && referenceFile) {
-                resultsPlaceholder.style.display = 'none';
-                resultsContent.style.display = 'block';
-            } else {
-                resultsPlaceholder.style.display = 'flex';
-                resultsContent.style.display = 'none';
-            }
-        }
-        
-        // Initialize file upload handlers
-        handleFileUpload('user-research-file', 'user-research-info', 'user-research-upload');
-        handleFileUpload('reference-research-file', 'reference-research-info', 'reference-research-upload');
-        
-        // Simulate comparison functionality
-        document.querySelector('.submit-btn').addEventListener('click', function() {
-            const resultsContent = document.getElementById('comparison-results');
-            resultsContent.innerHTML = `
-                <div class="loading">Generating comparison...</div>
-            `;
-            
-            // Simulate loading time
-            setTimeout(function() {
-                resultsContent.innerHTML = `
-                    <div class="comparison-result">
-                        <h3>Thematic Analysis</h3>
-                        <p>The AI has identified the following themes in both papers:</p>
-                        <ul>
-                            <li><strong>Methodology:</strong> 85% similarity in research approaches</li>
-                            <li><strong>Key Findings:</strong> 72% overlap in main conclusions</li>
-                            <li><strong>Literature Citations:</strong> 45% shared references</li>
-                        </ul>
-                        <h3>Content Similarity</h3>
-                        <div class="similarity-meter">
-                            <div class="similarity-bar" style="width: 68%"></div>
-                            <span>68% Overall Similarity</span>
-                        </div>
-                        <h3>Unique Contributions</h3>
-                        <p>The user research paper contains novel approaches in data analysis not present in the reference paper.</p>
-                    </div>
-                `;
-            }, 2000);
-        });
-    </script>
-{%endblock content%}
+{% endblock content %}
