@@ -15,12 +15,8 @@
                         <h2>User Research Paper</h2>
                         <div class="upload-container" id="user-research-upload">
                             <div class="upload-area">
-                                <i class="fas fa-file-upload"></i>
-                                <h3>Select your file</h3>
-                                <p>or</p>
-                                <label for="user-research-file" class="upload-btn">Browse Files</label>
-                                <!-- Added name attribute but kept other attributes the same -->
-                                <input type="file" id="user-research-file" name="user_file" hidden accept=".pdf,.doc,.docx">
+                                <h3>Select your research paper</h3>
+                                <input type="file" id="user-research-file" name="user_file" accept=".pdf,.doc,.docx">
                                 <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
                             </div>
                         </div>
@@ -30,29 +26,34 @@
                         <h2>Template Paper</h2>
                         <div class="upload-container" id="reference-research-upload">
                             <div class="upload-area">
-                                <i class="fas fa-file-upload"></i>
-                                <h3>Select your file</h3>
-                                <p>or</p>
-                                <label for="reference-research-file" class="upload-btn">Browse Files</label>
-                                <!-- Added name attribute but kept other attributes the same -->
-                                <input type="file" id="reference-research-file" name="template_file" hidden accept=".pdf,.doc,.docx">
+                                <h3>Select template paper</h3>
+                                <input type="file" id="reference-research-file" name="template_file" accept=".pdf,.doc,.docx">
                                 <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
                             </div>
                         </div>
                     </section>
                 </div>
-            </form>
+            
             <div class="submission-container">
                 <button type="submit" class="submit-btn">Check Template Correlation</button>
                 <p class="submission-note">Please upload both documents to enable comparison</p>
             </div>
+        </form>
                 <section class="results-section">
                     <h2>AI Analysis</h2>
                     <div class="results-container">
                         <div class="results-placeholder">
+                        {%if ai_result %}
+                            <div class="ai_output">
+                                <md>{{ai_result}}</md>
+
+                                <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+                             </div>
+                        {%else%}
                             <i class="fas fa-robot"></i>
                             <h3>AI-Generated Analysis</h3>
                             <p>Upload both papers to generate a comparison analysis</p>
+                        {% endif %}
                         </div>
                     </div>
                 </section>

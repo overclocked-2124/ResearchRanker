@@ -10,3 +10,4 @@ ollama
 bs4
 markdown
 Werkzeug
+pymupdf

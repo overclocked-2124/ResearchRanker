@@ -10,6 +10,8 @@ import ollama
 import markdown
 import os
 from werkzeug.utils import secure_filename
+from utils.pdf_reader import readPDF
+from utils.comparison import comparePDF,compareTemplate
 
 # App configuration
 app = Flask(__name__, static_folder='static')
@@ -73,7 +75,7 @@ def home():
     print(f"Session state: logged_in={logged_in}, username={username}")
     
 
-    response = ollama.generate(model="tinyllama:1.1b", prompt="Return one light thought on research with author name.quotes should be off only 10 words.",stream=False)['response']
+    response = ollama.generate(model="gemma3:1b", prompt="Return one light thought on research without author name.quotes of only about 2 lines.Do not return anything other than the quote no author name",stream=False)['response']
     
     return render_template("index.html", logged_in=logged_in, username=username,thought=response,title="ResearchRankers",css_path='style-index')
 
@@ -172,35 +174,6 @@ def compare():
     username = session.get('username', None)
     return render_template("compare.html",logged_in=logged_in, username=username,title="ResearchRankers-Compare",css_path='style-compare')
 
-@app.route("/templatechecker")
-def templatechecker():
-    logged_in = session.get('logged_in', False)
-    username = session.get('username', None)
-    return render_template("template-checker.html",logged_in=logged_in, username=username,title="ResearchRankers-Template_checking",css_path='style-template-checker')
-
-
-#Uploading files for templatechecker
-@app.route("/check-template",methods=['POST'])
-def check_template():
-    if 'user_file' not in request.files or 'template_file' not in request.files:
-        return redirect(url_for('index'))
-    
-    user_file=request.files['user_file']
-    template_file=request.files['template_file']
-
-    if user_file.filename =='' or template_file.filename=='':
-        return redirect(url_for('index'))
-    user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
-    template_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(template_file.filename))
-    
-    user_file.save(user_filepath)
-    template_file.save(template_filepath)
-    
-    #add the processing mechnaisem here
-    
-    os.remove(user_filepath)
-    os.remove(template_filepath)
-
 #Uploading files for compare
 @app.route("/compare-papers",methods=['POST'])
 def compare_papers():
@@ -224,6 +197,44 @@ def compare_papers():
     
     os.remove(user_filepath)
     os.remove(reference_filepath)
+
+@app.route("/templatechecker")
+def templatechecker():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    ai_result = session.get('ai_result_template', None)
+    return render_template("template-checker.html",logged_in=logged_in, username=username,title="ResearchRankers-Template_checking",css_path='style-template-checker',ai_result=ai_result)
+
+
+#Uploading files for templatechecker
+@app.route("/check-template",methods=['POST'])
+def check_template():
+    if 'user_file' not in request.files or 'template_file' not in request.files:
+        return redirect(url_for('index'))
+    
+    user_file=request.files['user_file']
+    template_file=request.files['template_file']
+
+    if user_file.filename =='' or template_file.filename=='':
+        return redirect(url_for('index'))
+    user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
+    template_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(template_file.filename))
+    
+    user_file.save(user_filepath)
+    template_file.save(template_filepath)
+    
+    user_text=readPDF(user_filepath)
+    template_text=readPDF(template_filepath)
+    
+    ai_result_template=compareTemplate(template_text,user_text,"gemma3:12b")
+    
+    os.remove(user_filepath)
+    os.remove(template_filepath)
+    
+    session['ai_result_template']= ai_result_template
+    
+    return redirect(url_for('templatechecker'))
+
 
 
 if __name__ == "__main__":
