@@ -125,4 +125,183 @@ body{
     background-color: #F9E0D9;
     margin: 0;
     padding: 10px 10px;
+<<<<<<< HEAD:app/templates/styles.css
+}
+
+.tagline{
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 80px;
+    font-weight: 600;
+    color: #420c14;
+}
+
+.tagline .tagline-green{
+    display: inline-block;
+    color: #216869;
+}
+
+.block1-container1{
+    margin-left:120px;
+    margin-right:180px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.tool-discription-list{
+    margin-top: 38px;
+    margin-bottom: 30px;
+    display:  flex;
+    list-style: none;
+    justify-content: left;
+    gap: 2rem;
+    text-align: left;
+}
+.tool-discription-list li{
+    width: 350px;
+    border: 3px solid #732C2C;
+    border-radius: 8px ;
+    padding: 18px; 
+    margin-left: 80px; 
+}
+
+.tool-discription-list li:hover{
+    background-color: #54C7C9;
+}
+
+.tool-discription-list .tool-discription{
+    color: #732C2C;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+.tool-discription-list .tool-discription-title{
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.tool-discription-explanation{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.block2{
+    background-color: #420C14;
+    margin: 0;
+    padding: 10px 10px;
+}
+
+.title-section-2{
+    margin-top: 30px;
+    margin-left:70px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+    font-size: 60px;
+    font-weight: 600;
+    color: #2C8A8C;
+    margin-bottom: 30px;
+}
+
+
+
+.block2-ai-discription{
+    display: flex;
+    margin-top: 30px;
+    
+}
+
+.block2-ai-discription-list{
+    margin-top: 38px;
+    margin-bottom: 30px;
+    display:  flex;
+    list-style: none;
+    text-align: left;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 0;
+    gap: 2rem;
+}
+
+.block2-ai-discription-list li{
+    width: 250px;
+    border: 4px solid #2C8A8C;
+    border-radius: 40px ;
+    padding: 18px; 
+    
+}
+
+
+.block2-ai-discription-list .block2-ai-discription-title{
+    font-size: 32px;
+    font-weight: 700;
+    text-align: center;
+    color: #2C8A8C;
+    
+}
+
+.block2-ai-discription-list .block2-ai-discription-explanation{
+    font-size: 20px;
+    font-weight: 400;
+    color: #F9E0D9;
+    font-family: 'Roboto', sans-serif;
+}
+
+.block2-ai-discription-list li img{
+    display: block; 
+    margin: 0 auto 1rem; 
+}
+
+#phi{
+    height: auto;
+    width: 110px;
+}
+
+#llama{
+    height: auto;
+    width: 80px;
+}
+
+#croc{
+    height: auto;
+    width: 140px;
+}
+
+.discription-section-2-container{
+    display: flex;
+    justify-content: left;
+    gap: 6rem;
+}
+
+
+.discription-section-2{
+    margin-left: 70px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 26px;
+    color: #F9E0D9;
+    font-weight: 400;
+}
+
+.choose-model{
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 23px;
+    text-decoration: none;
+    display: inline-block;
+    background-color: #216869;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+}
+
+
+.choose-model:hover{
+    background-color: #2C8A8C;
+=======
+>>>>>>> 05f0152014c32116a7a60dff9088984793144978:app/static/css/style-template.css
 }
