@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="flex-container">
+    <div class="container">
+        <header>
+            <h1>Research Paper Comparison</h1>
+            <p>Upload your research papers for AI-powered comparison</p>
+        </header>
+
+        <main>
+            <!-- Add form with proper attributes -->
+            <form action="/compare" method="POST" enctype="multipart/form-data">
+                <div class="upload-section-container">
+                    <section class="upload-section">
+                        <h2>User Research Paper</h2>
+                        <div class="upload-container">
+                            <div class="upload-area">
+                                <!-- Simplified file input -->
+                                <h3>Select your research paper</h3>
+                                <input type="file" id="user-research-file" name="user_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="upload-section">
+                        <h2>Reference Research Paper</h2>
+                        <div class="upload-container">
+                            <div class="upload-area">
+                                <!-- Simplified file input (fixed typo in type attribute) -->
+                                <h3>Select reference paper</h3>
+                                <input type="file" id="reference-research-file" name="reference_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="submission-container">
+                    <!-- Regular submit button -->
+                    <button type="submit" class="submit-btn">Compare Documents</button>
+                    <p class="submission-note">Please upload both documents for comparison</p>
+                </div>
+            </form>
+
+            <!-- Static message about results -->
+            <section class="results-section">
+                <h2>AI Comparison Results</h2>
+                <div class="results-container">
+                    <div class="results-placeholder">
+                        <h3>Results will appear after submission</h3>
+                        <p>Upload both papers and click "Compare Documents" to see results</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+{% endblock content %}

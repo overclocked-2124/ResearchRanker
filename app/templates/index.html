@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+{% block content%}
+    <div class="block1">
+    
+    <div class="block1-container1">
+        <div class="tagline"><div class="tagline-green" >Intelligent AI-powered  </div> <br>Research Refinement <br>At Your <div class="tagline-green" >Fingertips.</div></div>
+        <div class="block1-img"><img src="{{url_for('static', filename='images/owl.png')}}" width="230px"> </div>
+    </div>
+    
+        <ul class="tool-discription-list">
+            <li><a href="/compare" class="tool-discription"><div class="tool-discription-title" >Compare Your Paper</div>
+                <div class="tool-discription-explanation"><br>Use advanced AI to compare your research paper with a reference paper of your 
+                    choice. Get detailed insights on differences, gaps, and areas for improvement.</div> </a></li>
+            <li><a href="/templatechecker" class="tool-discription"><div class="tool-discription-title" >Template Compliance Checker</div>
+                <div class="tool-discription-explanation"><br>Analyze how well your research paper aligns with a provided template. 
+                    Receive a compliance score and actionable feedback to refine your work.</div> </a></li>
+        </ul>
+    
+
+    </div>
+    <div class="block2">
+        <div class="title-section-2">
+           Local AI Models Powered By Ollama
+        </div>
+        <div class="discription-section-2-container">
+        <div class="discription-section-2">
+            Experience the flexibility of AI with Ollama's locally-run models. Choose from powerful<br>options like DeepSeek R1, LLaMA 3.2, Phi4, and Mistral to match your research needs.<br>Switch between models seamlessly to optimize performance for your tasks.  
+        </div> 
+        <div><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} class="choose-model" >Choose Model</a></div> 
+        </div>
+
+
+
+        <div class="block2-ai-discription">
+            <ul class="block2-ai-discription-list">
+                <li><img id="rabbit" src="{{url_for('static', filename='images/animals/rabbit.png')}}" width="60px"><p><div class="block2-ai-discription-title">DeepSeek R1</div> <div class="block2-ai-discription-explanation"><br>A cutting-edge research model optimized for deep document analysis. With 7 billion parameters, it excels in extracting nuanced insights from complex papers.</div></p> </li>
+                <li><img id="llama" src="{{url_for('static', filename='images/animals/llama.png')}}" width="60px"><p><div class="block2-ai-discription-title">LLaMA 3.2</div> <div class="block2-ai-discription-explanation"><br>The latest iteration of LLaMA, featuring 13 billion parameters for advanced language understanding and contextual accuracy in research applications.</div></p></li>
+                <li><img id="phi" src="{{url_for('static', filename='images/animals/phi.png')}}" width="60px"><p><div class="block2-ai-discription-title">Phi4</div> <div class="block2-ai-discription-explanation"><br>A robust AI model designed for precision-driven tasks, leveraging 10 billion parameters to deliver reliable and efficient results for academic research.</div></p></li>
+                <li><img id="croc" src="{{url_for('static', filename='images/animals/croc.png')}}" width="60px"><p><div class="block2-ai-discription-title">Mistral</div> <div class="block2-ai-discription-explanation"><br>Lightweight yet powerful, Mistral boasts 7 billion parameters, making it ideal for fast and local execution without compromising performance.</div> </p></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="block3">
+        <div class="quote">{{thought}}<div class="quote-by">—Albert Szent-Györgyi</div></div>
+        
+    </div>
+{%endblock content%}

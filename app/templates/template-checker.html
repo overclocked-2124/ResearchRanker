@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="flex-container">
+    <div class="container">
+        <header>
+            <h1>Research Paper Template Checker</h1>
+            <p>Upload your research papers for AI-powered comparison</p>
+        </header>
+
+        <main>
+            <!-- Form wraps everything but preserves original structure -->
+            <form action="/check-template" method="POST" enctype="multipart/form-data">
+                <div class="upload-section-container">
+                    <section class="upload-section">
+                        <h2>User Research Paper</h2>
+                        <div class="upload-container" id="user-research-upload">
+                            <div class="upload-area">
+                                <h3>Select your research paper</h3>
+                                <input type="file" id="user-research-file" name="user_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="upload-section">
+                        <h2>Template Paper</h2>
+                        <div class="upload-container" id="reference-research-upload">
+                            <div class="upload-area">
+                                <h3>Select template paper</h3>
+                                <input type="file" id="reference-research-file" name="template_file" accept=".pdf,.doc,.docx">
+                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            
+            <div class="submission-container">
+                <button type="submit" class="submit-btn">Check Template Correlation</button>
+                <p class="submission-note">Please upload both documents to enable comparison</p>
+            </div>
+        </form>
+                <section class="results-section">
+                    <h2>AI Analysis</h2>
+                    <div class="results-container">
+                        <div class="results-placeholder">
+                        {%if ai_result %}
+                            <div class="ai_output">
+                                <md>{{ai_result}}</md>
+
+                                <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+                             </div>
+                        {%else%}
+                            <i class="fas fa-robot"></i>
+                            <h3>AI-Generated Analysis</h3>
+                            <p>Upload both papers to generate a comparison analysis</p>
+                        {% endif %}
+                        </div>
+                    </div>
+                </section>
+        </main>
+    </div>
+</div>
+{% endblock content %}

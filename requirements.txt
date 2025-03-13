@@ -1,3 +1,0 @@
-pypdf2
-flask
-ollama
