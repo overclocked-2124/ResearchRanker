@@ -210,13 +210,13 @@ def templatechecker():
 @app.route("/check-template",methods=['POST'])
 def check_template():
     if 'user_file' not in request.files or 'template_file' not in request.files:
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     
     user_file=request.files['user_file']
     template_file=request.files['template_file']
 
     if user_file.filename =='' or template_file.filename=='':
-        return redirect(url_for('index'))
+        return redirect(url_for('home'))
     user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
     template_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(template_file.filename))
     
@@ -226,7 +226,7 @@ def check_template():
     user_text=readPDF(user_filepath)
     template_text=readPDF(template_filepath)
     
-    ai_result_template=compareTemplate(template_text,user_text,"gemma3:12b")
+    ai_result_template=compareTemplate(template_text,user_text,"phi4")
     
     os.remove(user_filepath)
     os.remove(template_filepath)
