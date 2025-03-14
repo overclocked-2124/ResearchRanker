@@ -22,7 +22,7 @@ def comparePDF(reference,user,aimodel):
     {user}
 
     Analyze and compare the methodologies of the two papers as per the instructions above.
-    """,stream=False,options={"keep_alive": 0})['response']
+    """,stream=False)['response']
    
     return generated_text
 
@@ -68,7 +68,7 @@ def compareTemplate(template,user,aimodel):
     
     **Example Output:**
     `Rating: 7.8/10  
-    Alignment: 78% structural match  
+    Alignment: 78 percent  
     Discrepancies: 1) Heading hierarchy mismatch (3 levels vs 4) 2) Margin variance (±12%) 3) Table positioning deviation  
     Matches: 1) Page numbering 2) Paragraph spacing 3) Footer content positioning  
     Confidence: 92%`
@@ -99,10 +99,9 @@ def compareTemplate(template,user,aimodel):
     Matches: 1)... 2)... 3)...  
     Confidence: [Z]%
     """
-    #,options={
-        #"temperature": 0.3,
-        #"top_p": 0.9,
-        #"stop": ["Rating:"]
-        #}
-    ,stream=False,options={"keep_alive": 0})['response']
+    ,options={
+        "temperature": 0.3,
+        
+        }
+    ,stream=False)['response']
     return generated_text
