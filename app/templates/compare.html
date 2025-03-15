@@ -9,7 +9,7 @@
 
         <main>
             <!-- Add form with proper attributes -->
-            <form action="/compare" method="POST" enctype="multipart/form-data">
+            <form action="/compare-papers" method="POST" enctype="multipart/form-data">
                 <div class="upload-section-container">
                     <section class="upload-section">
                         <h2>User Research Paper</h2>
@@ -42,14 +42,22 @@
                     <p class="submission-note">Please upload both documents for comparison</p>
                 </div>
             </form>
-
-            <!-- Static message about results -->
+            
             <section class="results-section">
                 <h2>AI Comparison Results</h2>
                 <div class="results-container">
                     <div class="results-placeholder">
+                    {%if ai_result %}
+                        <div class="ai_output">
+                            <md>{{ai_result}}</md>
+
+                            <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+                         </div>
+                    {%else%}
+                        <i class="fas fa-robot"></i>
                         <h3>Results will appear after submission</h3>
                         <p>Upload both papers and click "Compare Documents" to see results</p>
+                    {% endif %}
                     </div>
                 </div>
             </section>

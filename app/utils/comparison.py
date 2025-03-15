@@ -100,8 +100,7 @@ def compareTemplate(template,user,aimodel):
     Confidence: [Z]%
     """
     ,options={
-        "temperature": 0.3,
-        
+        "temperature": 0.3
         }
     ,stream=False)['response']
     return generated_text

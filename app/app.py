@@ -170,9 +170,10 @@ def tools():
     
 @app.route("/compare")
 def compare():
+    ai_result = session.get('ai_result_compare', None)
     logged_in = session.get('logged_in', False)
     username = session.get('username', None)
-    return render_template("compare.html",logged_in=logged_in, username=username,title="ResearchRankers-Compare",css_path='style-compare')
+    return render_template("compare.html",logged_in=logged_in, username=username,title="ResearchRankers-Compare",css_path='style-compare',ai_result=ai_result)
 
 #Uploading files for compare
 @app.route("/compare-papers",methods=['POST'])
@@ -193,10 +194,17 @@ def compare_papers():
     reference_file.save(reference_filepath)
     
     
-    #add the processing mechnaisem here
+    user_text=readPDF(user_filepath)
+    reference_text=readPDF(reference_filepath)
+    
+    ai_result_compare=comparePDF(reference_text,user_text,"phi4")
     
     os.remove(user_filepath)
     os.remove(reference_filepath)
+    
+    session['ai_result_compare']= ai_result_compare
+    
+    return redirect(url_for('compare'))
 
 @app.route("/templatechecker")
 def templatechecker():
