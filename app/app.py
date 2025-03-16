@@ -75,7 +75,7 @@ def home():
     print(f"Session state: logged_in={logged_in}, username={username}")
     
 
-    response = ollama.generate(model="gemma3:1b", prompt="Return one light thought on research without author name.quotes of only about 2 lines.Do not return anything other than the quote no author name",stream=False)['response']
+    response = ollama.generate(model="gemma3:1b", prompt="give one qoute about research given by a great person in 1-2 lines dont give author name or anything else, ONLY QUOTE",stream=False)['response']
     
     return render_template("index.html", logged_in=logged_in, username=username,thought=response,title="ResearchRankers",css_path='style-index')
 
