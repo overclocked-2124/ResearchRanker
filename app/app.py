@@ -243,6 +243,11 @@ def check_template():
     
     return redirect(url_for('templatechecker'))
 
+@app.route("/grammercorrect")
+def grammercorrect():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("grammer-correct.html",logged_in=logged_in, username=username,title="ResearchRankers-Grammer_Correction",css_path='style-grammer-correction')
 
 
 if __name__ == "__main__":
