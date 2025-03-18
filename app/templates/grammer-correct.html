@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+{% block content%}
+<div class="flex-container">
+    <div class="container">
+        <header>
+            <h1>Research Paper Grammar Correction</h1>
+            <p>Upload your research paper for AI-powered grammar correction</p>
+        </header>
+
+        <main>
+            <form action="#" method="POST" enctype="multipart/form-data">
+                <section class="upload-section">
+                    <h2>Your Research Paper</h2>
+                    <div class="upload-container">
+                        <div class="upload-area">
+                            <h3>Select your research paper</h3>
+                            <input type="file" id="research-file" name="research_file" accept=".pdf,.doc,.docx,.txt">
+                            <p class="file-types">Supported formats: PDF, DOC, DOCX, TXT</p>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="submission-container">
+                    <button type="submit" class="submit-btn">Correct Grammar</button>
+                    <p class="submission-note">Please upload your document for grammar correction</p>
+                </div>
+            </form>
+            
+            <section class="results-section">
+                <h2>Grammar Correction Results</h2>
+                <div class="results-container">
+                    <div class="results-placeholder">
+                        <i class="fas fa-spell-check"></i>
+                        <h3>Corrected paper will appear here</h3>
+                        <p>Upload your paper and click "Correct Grammar" to see results</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="download-section">
+                <h2>Download Corrected Paper</h2>
+                <div class="download-container">
+                    <a href="#" class="download-btn" download>
+                        <i class="fas fa-download"></i> Download Corrected Paper
+                    </a>
+                    <p class="download-note">Your corrected paper will be available for download after processing</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+{% endblock content %}
