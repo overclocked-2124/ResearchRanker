@@ -13,31 +13,55 @@
                 <div class="upload-section-container">
                     <section class="upload-section">
                         <h2>User Research Paper</h2>
-                        <div class="upload-container" id="user-research-upload">
-                            <div class="upload-area">
-                                <h3>Select your research paper</h3>
-                                <input type="file" id="user-research-file" name="user_file" accept=".pdf,.doc,.docx">
-                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                        <div class="file-upload-container">
+                            <div class="file-upload-header">
+                                <svg width="200" height="200" viewBox="0 0 20 20" fill="#5a2c2c" stroke="#2a0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 15H18C19.5 15 21 13.8 21 12C21 9.8 19.2 8 17 8C16.5 5.5 14.5 4 12 4C9.5 4 7.5 5.5 7 8C4.8 8 3 9.8 3 12C3 13.8 4.5 15 6 15Z" stroke="#2a0c0c" fill="#732c2c"/>
+                                    <path d="M12 17V10M12 10L9 13M12 10L15 13" stroke="#2a0c0c"/>
+                                </svg>
+                                <p>Browse File to upload!</p>
                             </div>
+                            <label for="user-research-file" class="file-upload-footer">
+                                <svg fill="currentColor" viewBox="0 0 32 32">
+                                    <path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path>
+                                    <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
+                                </svg>
+                                <p class="file-name">No file selected</p>
+                            </label>
+                            <input id="user-research-file" name="user_file" type="file" class="hidden-input" accept=".pdf,.doc,.docx">
                         </div>
                     </section>
 
                     <section class="upload-section">
                         <h2>Template Paper</h2>
-                        <div class="upload-container" id="reference-research-upload">
-                            <div class="upload-area">
-                                <h3>Select template paper</h3>
-                                <input type="file" id="reference-research-file" name="template_file" accept=".pdf,.doc,.docx">
-                                <p class="file-types">Supported formats: PDF, DOC, DOCX</p>
+                        <div class="file-upload-container">
+                            <div class="file-upload-header">
+                                <svg width="200" height="200" viewBox="0 0 20 20" fill="#5a2c2c" stroke="#2a0c0c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6 15H18C19.5 15 21 13.8 21 12C21 9.8 19.2 8 17 8C16.5 5.5 14.5 4 12 4C9.5 4 7.5 5.5 7 8C4.8 8 3 9.8 3 12C3 13.8 4.5 15 6 15Z" stroke="#2a0c0c" fill="#732c2c"/>
+                                    <path d="M12 17V10M12 10L9 13M12 10L15 13" stroke="#2a0c0c"/>
+                                </svg>
+                                <p>Browse File to upload!</p>
                             </div>
+                            <label for="reference-research-file" class="file-upload-footer">
+                                <svg fill="currentColor" viewBox="0 0 32 32">
+                                    <path d="M15.331 6H8.5v20h15V14.154h-8.169z"></path>
+                                    <path d="M18.153 6h-.009v5.342H23.5v-.002z"></path>
+                                </svg>
+                                <p class="file-name">No file selected</p>
+                            </label>
+                            <input id="reference-research-file" name="template_file" type="file" class="hidden-input" accept=".pdf,.doc,.docx">
                         </div>
                     </section>
                 </div>
             
             <div class="submission-container">
-                <button type="submit" class="submit-btn">Check Template Correlation</button>
-                <p class="submission-note">Please upload both documents to enable comparison</p>
+                <button type="submit" class="submit-btn">
+                <svg height="24" width="24" fill="#FFFFFF" viewBox="0 0 24 24" data-name="Layer 1" id="Layer_1" class="sparkle">
+                    <path d="M10,21.236,6.755,14.745.264,11.5,6.755,8.255,10,1.764l3.245,6.491L19.736,11.5l-6.491,3.245ZM18,21l1.5,3L21,21l3-1.5L21,18l-1.5-3L18,18l-3,1.5ZM19.333,4.667,20.5,7l1.167-2.333L24,3.5,21.667,2.333,20.5,0,19.333,2.333,17,3.5Z"></path>
+                </svg>
+                <span class="text">Check Template Correlation</span>
             </div>
+            <p class="submission-note">Please upload both documents to enable comparison</p>
         </form>
                 <section class="results-section">
                     <h2>AI Analysis</h2>
@@ -59,5 +83,7 @@
                 </section>
         </main>
     </div>
+    <script src="{{ url_for('static', filename='js/templateFileHandler.js') }}"></script>
 </div>
+
 {% endblock content %}
