@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap');
-
 body{
     background-color: #F9E0D9;
 }
@@ -68,35 +66,17 @@ body{
     border-radius: 5px;
 }
 
-nav {
-    position: relative; 
-    width: 100%;    
+nav{
+    margin-top: 0;
     justify-content: space-between;
     align-items: center;
-    padding-top: 7px;
-    padding-right: 1%;
-    padding-left: 1%;
-    background-color: #F9E0D9;
-    transition: all 0.3s ease;  
-}
-.nav-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: rgba(249, 224, 217, 0.1); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    margin: 0;
+    padding:  10px 20px ;
+    margin-bottom: 40px;
 }
 
 .nav-container{
     display: flex;
     justify-content: space-between;
-    padding-right: 2.5%;
-    text-decoration: none;
-    
 }
 
 .navbar {
@@ -107,6 +87,4 @@ nav {
     flex-wrap: wrap;
     justify-content: right;
     gap: 2rem;
-    flex-direction: row;
-    align-items: center;
 }

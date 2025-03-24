@@ -72,7 +72,6 @@ main {
     margin-bottom: 15px;
     font-size: 1.5rem;
     font-weight: 600;
-    text-align: center;
 }
 
 .upload-container {
@@ -131,7 +130,6 @@ input[type="file"]:hover {
     margin-bottom: 15px;
     font-size: 1.5rem;
     font-weight: 600;
-    text-align: center;
 }
 
 .results-container {
@@ -159,57 +157,24 @@ input[type="file"]:hover {
     margin-top: 60px;
     padding-top: 20px;
     border-top: 1px solid rgba(115, 44, 44, 0.1);
-    display: flex;  /* Add this */
-    flex-direction: column;  /* Add this */
-    align-items: center;  /* Add this */
-    justify-content: center;
-}  
+}
 
 .submit-btn {
+    background-color: #216869;
+    color: white;
     border: none;
-    width: 17em;
-    height: 4em;
-    border-radius: 3em;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    background: #420c14;  /* Dark maroon */
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 450ms ease-in-out;
-    position: relative;
-    padding: 0 24px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
 }
 
 .submit-btn:hover {
-    background: #732C2C;  /* Lighter maroon */
-    box-shadow: 0 0 15px rgba(115, 44, 44, 0.3);  /* Subtle glow */
+    background-color: #184d4e;
     transform: translateY(-2px);
-}
-
-.submit-btn .sparkle {
-    fill: #F9E0D9;  /* Light pink */
-    transition: all 800ms ease;
-    opacity: 0.9;  /* Reduced intensity */
-}
-
-.submit-btn:hover .sparkle {
-    fill: #F9E0D9;
-    transform: scale(1.1);  /* Reduced scale effect */
-    opacity: 1;
-}
-
-.submit-btn .text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    color: #F9E0D9;  /* Light pink */
-    font-size: 16px;
-    letter-spacing: 0.5px;
-}
-
-.submit-btn:active {
-    transform: translateY(0);
-    background: #216869;  /* Teal on click */
+    box-shadow: 0 5px 15px rgba(33, 104, 105, 0.3);
 }
 
 .submission-note {
@@ -217,91 +182,11 @@ input[type="file"]:hover {
     font-size: 0.85rem;
     color: #732C2C;
     opacity: 0.7;
-    text-align: center;
 }
 
 .ai_output{
     color: #732C2C;
     text-align: left;
-}
-
-/* Add after existing styles */
-.file-upload-container {
-    height: 300px;
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px;
-    gap: 5px;
-    background-color: rgba(115, 44, 44, 0.041);
-}
-
-.file-upload-header {
-    flex: 1;
-    width: 100%;
-    border: 2px dashed #732C2C;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    transition: all 0.3s ease;
-}
-
-.file-upload-header:hover {
-    border-color: #216869;
-}
-
-.file-upload-header svg {
-    height: 80px;
-    fill: #732C2C;
-}
-
-.file-upload-header p {
-    text-align: center;
-    color: #732C2C;
-    margin-top: 10px;
-}
-
-.file-upload-footer {
-    background-color: rgba(115, 44, 44, 0.075);
-    width: 100%;
-    height: 40px;
-    padding: 8px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    color: #732C2C;
-    border: none;
-    transition: all 0.3s ease;
-}
-
-.file-upload-footer:hover {
-    background-color: rgba(33, 104, 105, 0.1);
-}
-
-.file-upload-footer svg {
-    height: 130%;
-    fill: #732C2C;
-    background-color: rgba(70, 66, 66, 0.103);
-    border-radius: 50%;
-    padding: 2px;
-    cursor: pointer;
-}
-
-.file-upload-footer p {
-    flex: 1;
-    text-align: center;
-    padding-right: 10px;
-}
-
-.hidden-input {
-    display: none;
 }
 
 @media (max-width: 900px) {
@@ -325,11 +210,6 @@ input[type="file"]:hover {
     
     .upload-area {
         padding: 20px;
-    }
-
-    .submit-btn {
-        width: 90%;  /* Make button responsive */
-        max-width: 20em;  /* Keep maximum width */
     }
 }
 
