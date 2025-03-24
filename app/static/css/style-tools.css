@@ -25,19 +25,22 @@ body{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    gap: 3rem;
 }
 
 .tool-card {
-    border-radius: 8px;
+    border-radius: 20px;
     padding: 20px;
     margin: 5px;  
     width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 4px solid #732c2c;
-    border-radius: 20px;
-    border-width: 5px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.tool-card:hover {
+    transform: scale(1.05);
+    box-shadow: 15px 15px 0px 0px black;
+}
 
 .tool-card h2 {
     font-size: 22px;
