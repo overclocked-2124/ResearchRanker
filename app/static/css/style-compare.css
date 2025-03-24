@@ -129,6 +129,7 @@ input[type="file"]:hover {
     margin-bottom: 15px;
     font-size: 1.5rem;
     font-weight: 600;
+    text-align: center;
 }
 
 .results-container {
@@ -286,6 +287,8 @@ input[type="file"]:hover {
     fill: #732C2C;
     transition: all 0.3s ease;
     display: block;
+    background-color: rgba(70, 66, 66, 0.103);
+    border-radius: 50%;
 }
 
 .file-upload-footer p {

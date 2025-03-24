@@ -23,6 +23,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/Logo.png') }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     {%if title%} <title>{{title}}</title> {%else%} <title>Research Ranker</title> {%endif%}
@@ -30,11 +34,11 @@
   <body>
     <nav >
       <div class="nav-container">
-          <ul class = "logobar">
-              <li class="logo"><img width="75px" height="75px" src="{{url_for('static', filename='images/Logo.png')}}"></li>
-              <li id="title1">Research</li>
-              <li id="title2">Rankers</li>     
-          </ul>
+            <ul class = "logobar">
+              <li class="logo"><a href="home"><img width="75px" height="75px" src="{{url_for('static', filename='images/Logo.png')}}"></a></li>
+              <li id="title1">Research</a></li>
+              <li id="title2">Rankers</a></li>     
+            </ul>
           <ul class = "navbar">
               <li ><a{%if logged_in %} href="home" {%else%} href="signup"{%endif%} id="overview">Overview</a></li> 
               <li ><a {%if logged_in %} href="" {%else%} href="signup"{%endif%} id="aimodels">AI Models</a></li>
