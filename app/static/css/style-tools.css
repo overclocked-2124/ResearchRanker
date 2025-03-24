@@ -72,7 +72,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding-top: 7px;
-    padding-left: 1.25%;
+    padding-right: 1%;
+    padding-left: 1%;
     background-color: #F9E0D9;
     transition: all 0.3s ease;  
 }
