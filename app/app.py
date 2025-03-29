@@ -267,6 +267,11 @@ def checkgrammer():
         
     
     
+@app.route('/plagarism')
+def plagarism():
+    logged_in = session.get('logged_in', False)
+    username = session.get('username', None)
+    return render_template("plagarism.html",logged_in=logged_in, username=username,title="ResearchRankers-Plagarism",css_path='style-plagarism')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -69,10 +69,10 @@ body{
     align-items: center;
     gap: 1rem;
     max-width: 100%;
+    transition: transform 0.3s ease, box-shadow 0.1s ease;
 }
 
 .tool-discription-list li:hover{
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
     transform: scale(1.05);
     box-shadow: 10px 10px 0px 0px black;
 }
