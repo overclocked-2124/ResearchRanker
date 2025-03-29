@@ -1,7 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
 
 body{
     background-color: #F9E0D9;
+    margin: 0;
+    padding-top: 80px; 
 }
 
 .tools-container {
@@ -18,7 +26,7 @@ body{
     font-size: 48px;
     color: #420c14;
     margin-bottom: 60px;
-    margin-top: 0px;
+    margin-top: 50px;
 }
 
 .tools-flexbox {
@@ -69,47 +77,4 @@ body{
     background-color: #732c2c;
     text-decoration: none;
     border-radius: 5px;
-}
-
-nav {
-    position: relative; 
-    width: 100%;    
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 7px;
-    padding-right: 1%;
-    padding-left: 1%;
-    background-color: #F9E0D9;
-    transition: all 0.3s ease;  
-}
-.nav-fixed {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    background-color: rgba(249, 224, 217, 0.1); 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    margin: 0;
-}
-
-.nav-container{
-    display: flex;
-    justify-content: space-between;
-    padding-right: 2.5%;
-    text-decoration: none;
-    
-}
-
-.navbar {
-    display: flex; 
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    flex-wrap: wrap;
-    justify-content: right;
-    gap: 2rem;
-    flex-direction: row;
-    align-items: center;
 }

@@ -32,8 +32,7 @@
     {%if title%} <title>{{title}}</title> {%else%} <title>Research Ranker</title> {%endif%}
   </head>
   <body>
-    <nav >
-      <div class="nav-container">
+    <nav class="nav-container">
             <ul class = "logobar">
               <li class="logo"><a href="home"><img width="75px" height="75px" src="{{url_for('static', filename='images/Logo.png')}}"></a></li>
               <li id="title1">Research</a></li>
@@ -45,8 +44,6 @@
               <li ><a {%if logged_in %} href="tools" {%else%} href="signup"{%endif%} id="tools">Tools</a></li>
           {%if logged_in%}<li><a class="sign-up" href="logout">Log out</a></li> {%else%} <li><a class="sign-up" href="signup">Sign In</a></li>{%endif%}  
           </ul>
-          
-      </div>
   </nav>
     {% block content %}{% endblock %}
 
