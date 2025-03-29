@@ -8,11 +8,14 @@
 }
 
 body {
+    margin: 0;
+    padding-top: 80px; /* Added padding to offset fixed navbar */
     background-color: #F9E0D9;
     color: #420C14;
 }
 
-.flex-container{
+
+.flex-container{    
     display: flex;
     justify-content: center;
     align-items: center;
