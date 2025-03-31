@@ -12,6 +12,7 @@ import os
 from werkzeug.utils import secure_filename
 from utils.pdf_reader import readPDF
 from utils.comparison import comparePDF,compareTemplate
+from utils.plagiarism_detector import extract_title,coreAPICall
 
 # App configuration
 app = Flask(__name__, static_folder='static')
@@ -273,5 +274,21 @@ def plagarism():
     username = session.get('username', None)
     return render_template("plagarism.html",logged_in=logged_in, username=username,title="ResearchRankers-Plagarism",css_path='style-plagarism')
 
+@app.route('/check-plagarism')
+def check_plagarism():
+    if 'user_file' not in request.files:
+        return render_template(url_for('home'))
+
+    user_file=request.files['user_file']
+
+    if user_file.filename == '':
+        return render_template(url_for('home'))
+    
+    user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
+    user_file.save(user_filepath)
+    paper_title=extract_title(user_filepath)
+    coreAPICall(paper_title)
+
+    
 if __name__ == "__main__":
     app.run(debug=True)
