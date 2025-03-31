@@ -1,4 +1,4 @@
-from flask import Flask, render_template, flash, redirect, url_for, session, request
+from flask import Flask, render_template, flash, redirect, url_for, session, request, current_app
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
@@ -274,21 +274,25 @@ def plagarism():
     username = session.get('username', None)
     return render_template("plagarism.html",logged_in=logged_in, username=username,title="ResearchRankers-Plagarism",css_path='style-plagarism')
 
-@app.route('/check-plagarism')
+@app.route('/check-plagarism',methods=['POST'])
 def check_plagarism():
     if 'user_file' not in request.files:
-        return render_template(url_for('home'))
+        return redirect(url_for('home'))
 
     user_file=request.files['user_file']
 
     if user_file.filename == '':
-        return render_template(url_for('home'))
+        return redirect(url_for('home'))  
     
     user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
     user_file.save(user_filepath)
     paper_title=extract_title(user_filepath)
-    coreAPICall(paper_title)
+    print(paper_title)
 
-    
+     
+    os.remove(user_filepath)  
+    return redirect(url_for('plagarism'))  
+
+
 if __name__ == "__main__":
     app.run(debug=True)

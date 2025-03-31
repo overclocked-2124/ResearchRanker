@@ -21,6 +21,6 @@ def extract_title(pdf_path):
 
 def coreAPICall(title):
     API_KEY = "H9F2ZVkoQpcYyXazGhlSsunLIUm5Cext"  
-    QUERY='title'
+    QUERY=f'{title}'
     URL = f"https://api.core.ac.uk/v3/search/works?q={QUERY}&apikey={API_KEY}"
     response = requests.get(URL)
