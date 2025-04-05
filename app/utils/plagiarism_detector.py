@@ -1,5 +1,6 @@
 import requests
 import fitz 
+import re
 
 def extract_title(pdf_path):
     doc = fitz.open(pdf_path)
@@ -33,19 +34,21 @@ def coreAPICall(title):
         data=response.json()
         results=data.get("results",[])
         print(data)
-        dois = []
-        url =[]
+        urls =[]
         for result in results:
-            doi = result.get("doi")
-            if doi is None:
+            downloadurl = result.get("downloadUrl")
+            if downloadurl is None:
                 continue
             else:
-                dois.append(doi)
-        return dois
-        
+                urls.append(downloadurl)
+        print(urls)
+        pdf_urls = [url for url in urls if re.search(r'\.pdf$', url)]
+        print(pdf_urls)
+        return pdf_urls[0]
+    
     except requests.exceptions.RequestException as e:
         print(f"API Key test failed: {str(e)}")
 
 
-
-coreAPICall('gay')
+# random test case
+coreAPICall("Applications")

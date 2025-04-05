@@ -287,9 +287,9 @@ def check_plagarism():
     user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
     user_file.save(user_filepath)
     paper_title=extract_title(user_filepath)
-    print(paper_title)
+    Api_pdf_title=coreAPICall(paper_title)
+    
 
-     
     os.remove(user_filepath)  
     return redirect(url_for('plagarism'))  
 
