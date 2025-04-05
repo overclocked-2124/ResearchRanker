@@ -43,15 +43,15 @@
             </form>
             
             <section class="results-section">
-                <h2>Grammar Correction Results</h2>
-                <div class="results-container">
-                    <div class="results-placeholder">
-                        <i class="fas fa-spell-check"></i>
-                        <h3>Corrected paper will appear here</h3>
-                        <p>Upload your paper and click "Correct Grammar" to see results</p>
-                    </div>
+            <h2>Grammar Correction Results</h2>
+            <div class="results-container">
+                <div class="results-placeholder">
+                    <i class="fas fa-spell-check"></i>
+                    <h3>Corrected paper will appear here</h3>
+                    <p>Upload your paper and click "Correct Grammar" to see results</p>
                 </div>
-            </section>
+            </div>
+        </section>
 
             <section class="download-section">
                 <h2>Download Corrected Paper</h2>
@@ -59,11 +59,11 @@
                     <a href="#" class="download-btn" download>
                         <i class="fas fa-download"></i> Download Corrected Paper
                     </a>
-                    <p class="download-note">Your corrected paper will be available for download after processing</p>
+                    
                 </div>
             </section>
         </main>
     </div>
-    <script src="{{ url_for('static', filename='js/grammarFileHandler.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/plagarismFileHandler.js') }}"></script>
 </div>
 {% endblock content %}

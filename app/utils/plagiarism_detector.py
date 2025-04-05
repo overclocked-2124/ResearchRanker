@@ -1,52 +1,54 @@
+import requests
+import fitz 
 import re
-import nltk
-from nltk.tokenize import sent_tokenize
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
 
-#Downloading the tokeniser (required only when running the code for first-time)
-nltk.download("punkt_tab")
+def extract_title(pdf_path):
+    doc = fitz.open(pdf_path)
+    first_page = doc[0]
+    blocks = first_page.get_text("dict")['blocks']
 
-#Loading the S-BERT model
-model = SentenceTransformer("all-MiniLM-L6-v2")
+    largest_text = ""
+    max_size = 0
+    for block in blocks:
+        if block['type'] == 0: 
+            for line in block['lines']:
+                for span in line['spans']:
+                    font_size = span['size']
+                    text = span['text']
+                    if font_size >= max_size:
+                        max_size = font_size
+                        largest_text += text
+    return largest_text if largest_text else "No title found"
 
-def preprocess_text(text:str):
-    """Pre-processes the text by lowercasing, removing special characters, and tokenizing into sentences."""
+def coreAPICall(title):
+    params = {
+    "q": title ,        # your search query
+    "hasFullText": "true",           # only return items with full text
+    "limit": 10,                     # number of results
+    "apiKey": "H9F2ZVkoQpcYyXazGhlSsunLIUm5Cext"
+}
+    URL = f"https://api.core.ac.uk/v3/search/works"
+    try:
+        response = requests.get(URL, params=params )
+        response.raise_for_status()
+        data=response.json()
+        results=data.get("results",[])
+        print(data)
+        urls =[]
+        for result in results:
+            downloadurl = result.get("downloadUrl")
+            if downloadurl is None:
+                continue
+            else:
+                urls.append(downloadurl)
+        print(urls)
+        pdf_urls = [url for url in urls if re.search(r'\.pdf$', url)]
+        print(pdf_urls)
+        return pdf_urls[0]
+    
+    except requests.exceptions.RequestException as e:
+        print(f"API Key test failed: {str(e)}")
 
-    #Converts into lower-case
-    text = text.lower()
 
-    #Removes special characters
-    text = re.sub(r'[^a-zA-Z0-9]', '', text)
-
-    #Tokenises into sentences
-    sentences = sent_tokenize(text)
-
-    return sentences
-
-def get_sentence_embeddings(sentences:list[str]):
-    """Converts sentences into vector embeddings using S-BERT"""
-
-    return model.encode(sentences, convert_to_tensor=True)
-
-def compute_similarity(text1, text2):
-    """Calculates similarity score between two texts"""
-
-    #Text Pre-processing
-    sentences1 = preprocess_text(text1)
-    sentences2 = preprocess_text(text2)
-
-    #Generating Embeddings
-    embeddings1 = get_sentence_embeddings(sentences1)
-    embeddings2 = get_sentence_embeddings(sentences2)
-
-    #Calculating co-sine similarities
-    similarities = cosine_similarity(embeddings1.cpu().numpy(), embeddings2.cpu().numpy())
-
-    #Calculating the final similarity score (out of 1)
-    avg_similarity = np.mean(similarities)
-
-    return avg_similarity
-
-#Should incorporate llm-based analysis
+# random test case
+coreAPICall("Applications")
