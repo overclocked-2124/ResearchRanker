@@ -24,6 +24,9 @@ def extract_title(pdf_path):
                     if font_size >= max_size:
                         max_size = font_size
                         largest_text += text
+    largest_text = re.sub(r'\[.*?\]', '', largest_text)  # remove things like [Undergraduate...]
+    largest_text = re.sub(r'[^\w\s]', '', largest_text)  # remove punctuation
+    largest_text = re.sub(r'\s+', ' ', largest_text)     # remove extra spaces
     return largest_text if largest_text else "No title found"
 
 def coreAPICall(title):
