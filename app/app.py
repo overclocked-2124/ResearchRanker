@@ -12,7 +12,7 @@ import os
 from werkzeug.utils import secure_filename
 from utils.pdf_reader import readPDF
 from utils.comparison import comparePDF,compareTemplate
-from utils.plagiarism_detector import extract_title,coreAPICall
+from utils.plagiarism_detector import extract_title,coreAPICall,download_pdf_from_url,extract_text_from_pdf_bytes,compute_similarity
 
 # App configuration
 app = Flask(__name__, static_folder='static')
@@ -286,9 +286,14 @@ def check_plagarism():
     
     user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
     user_file.save(user_filepath)
+
     paper_title=extract_title(user_filepath)
-    Api_pdf_title=coreAPICall(paper_title)
-    
+    url=coreAPICall(paper_title)
+    pdf_bytes=download_pdf_from_url(url)
+
+    downloaded_text=extract_text_from_pdf_bytes(pdf_bytes)
+    user_text=readPDF(user_filepath)
+    avg_sim=compute_similarity(user_text,downloaded_text)
 
     os.remove(user_filepath)  
     return redirect(url_for('plagarism'))  
