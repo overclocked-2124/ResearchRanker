@@ -272,7 +272,9 @@ def checkgrammer():
 def plagarism():
     logged_in = session.get('logged_in', False)
     username = session.get('username', None)
-    return render_template("plagarism.html",logged_in=logged_in, username=username,title="ResearchRankers-Plagarism",css_path='style-plagarism')
+    plagarism_result =  session.get('plagarism_result',None)
+    return render_template("plagarism.html",logged_in=logged_in, username=username,title="ResearchRankers-Plagarism",css_path='style-plagarism', plagarism_result=plagarism_result)
+    
 
 @app.route('/check-plagarism',methods=['POST'])
 def check_plagarism():
@@ -288,15 +290,17 @@ def check_plagarism():
     user_file.save(user_filepath)
 
     paper_title=extract_title(user_filepath)
+    print(paper_title)
     url=coreAPICall(paper_title)
     pdf_bytes=download_pdf_from_url(url)
 
     downloaded_text=extract_text_from_pdf_bytes(pdf_bytes)
     user_text=readPDF(user_filepath)
-    avg_sim=compute_similarity(user_text,downloaded_text)
-
+    plagarism_result=compute_similarity(user_text,downloaded_text)
+    session['plagarism_result'] = round(float(plagarism_result) * 100, 2)
     os.remove(user_filepath)  
     return redirect(url_for('plagarism'))  
+    
 
 
 if __name__ == "__main__":

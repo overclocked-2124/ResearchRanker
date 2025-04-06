@@ -28,9 +28,9 @@ def extract_title(pdf_path):
 
 def coreAPICall(title):
     params = {
-    "q": title ,        # your search query
-    "hasFullText": "true",           # only return items with full text
-    "limit": 10,                     # number of results
+    "q": title ,        
+    "hasFullText": "true",           
+    "limit": 20,                     
     "apiKey": "H9F2ZVkoQpcYyXazGhlSsunLIUm5Cext"
 }
     URL = f"https://api.core.ac.uk/v3/search/works"
