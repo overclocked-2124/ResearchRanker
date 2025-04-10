@@ -289,12 +289,19 @@ def check_plagarism():
     user_filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(user_file.filename))
     user_file.save(user_filepath)
 
-    paper_title=extract_title(user_filepath)
-    print(paper_title)
-    url=coreAPICall(paper_title)
-    pdf_bytes=download_pdf_from_url(url)
-
-    downloaded_text=extract_text_from_pdf_bytes(pdf_bytes)
+    paper_titles=extract_title(user_filepath)
+    urls=[]
+    for title in paper_titles:
+        urls+=coreAPICall(title)
+    print(urls)
+    downloaded_text=''
+    for url in urls:
+        pdf_bytes=download_pdf_from_url(url)
+        downloaded_text+=extract_text_from_pdf_bytes(pdf_bytes)
+    print(downloaded_text)
+    #with open("debug_output.txt", "w", encoding="utf-8") as f:
+    #   f.write(downloaded_text)
+    # plag detction needs to be worked upon
     user_text=readPDF(user_filepath)
     plagarism_result=compute_similarity(user_text,downloaded_text)
     session['plagarism_result'] = round(float(plagarism_result) * 100, 2)
