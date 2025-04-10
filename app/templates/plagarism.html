@@ -26,7 +26,7 @@
                             </svg>
                             <p class="file-name">No file selected</p>
                         </label>
-                        <input id="grammar-file" name="file" type="file" class="hidden-input" accept=".pdf,.doc,.docx">
+                        <input id="grammar-file" name="user_file" type="file" class="hidden-input" accept=".pdf">
                     </div>
                 </section>
             </div>
@@ -45,9 +45,16 @@
             <h2>Plagarism Check Results</h2>
             <div class="results-container">
                 <div class="results-placeholder">
+                    {%if plagarism_result %}
+                    <div class="ai_output">
+                        <md>{{plagarism_result}}</md>
+                        <script src="https://cdn.jsdelivr.net/gh/MarketingPipeline/Markdown-Tag/markdown-tag.js"></script>
+                     </div>
+                    {%else%}
                     <i class="fas fa-spell-check"></i>
                     <h3>Plagarism details will appear here</h3>
                     <p>Upload your paper and click "Check Plagarism" to see results</p>
+                    {% endif %}
                 </div>
             </div>
         </section>
