@@ -150,8 +150,6 @@ def login():
     # For GET requests, show the signup page (which contains the login form)
     return render_template("signup.html", title="ResearchRankers-Sign In", css_path='style-signup')
 
-
-
 @app.route("/logout")
 def logout():
     # Clear specific session variables
@@ -160,8 +158,6 @@ def logout():
     session.pop('username', None)
     flash('You have been logged out.')
     return redirect(url_for('home'))
-
-
 
 @app.route("/tools")
 def tools():
