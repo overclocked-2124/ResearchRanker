@@ -246,8 +246,6 @@ def grammercorrect():
     username = session.get('username', None)
     return render_template("grammer-correct.html",logged_in=logged_in, username=username,title="ResearchRankers-Grammer_Correction",css_path='style-grammer-correction')
 
-#Uploading files for grammercorrect
-
 @app.route("/check-grammer")
 def checkgrammer():
     if 'user_file_file' not in request.files:
