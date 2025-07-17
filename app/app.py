@@ -5,14 +5,18 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from requests_oauthlib import OAuth2Session
 from bs4 import BeautifulSoup
 import ollama
 import markdown
 import os
+from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 from utils.pdf_reader import readPDF
 from utils.comparison import comparePDF,compareTemplate
 from utils.plagiarism_detector import extract_title,coreAPICall,download_pdf_from_url,extract_text_from_pdf_bytes,compute_similarity
+
+load_dotenv()
 
 # App configuration
 app = Flask(__name__, static_folder='static')
@@ -65,6 +69,28 @@ class LoginForm(FlaskForm):
 # Create tables (only once, after models are defined)
 with app.app_context():
     db.create_all()
+
+# Load Google OAuth credentials from environment variables
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+
+# Google OAuth Setup
+AUTHORISATION_BASE_URL = "https://accounts.google.com/o/oauth2/auth"
+AUTH_TOKEN_URL = "https://oauth2.googleapis.com/token"
+REDIRECT_URL = "http://localhost:5001/callback"
+USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
+
+SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'openid'
+]
+
+# OAuth Setup for Development
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Routes
 @app.route('/')
@@ -260,7 +286,7 @@ def checkgrammer():
     
     #Add processing logic here
         
-    
+
     
 @app.route('/plagarism')
 def plagarism():
@@ -300,9 +326,41 @@ def check_plagarism():
     plagarism_result=compute_similarity(user_text,downloaded_text)
     session['plagarism_result'] = round(float(plagarism_result) * 100, 2)
     os.remove(user_filepath)  
-    return redirect(url_for('plagarism'))  
-    
+    return redirect(url_for('plagarism'))
 
+@app.route("/google_login")
+def google_login():
+    google = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URL, scope=SCOPE)
+    auth_url, state = google.authorization_url(AUTHORISATION_BASE_URL, access_type="offline", prompt="select_account")
+    session["oauth_state"] = state
+    return redirect(auth_url)
+
+@app.route("/callback")
+def callback():
+    google = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URL, state=session["oauth_state"])
+    token = google.fetch_token(AUTH_TOKEN_URL, client_secret=CLIENT_SECRET, authorization_response=request.url)
+    session["oauth_token"] = token
+
+    user_info = google.get(USER_INFO_URL).json()
+    name = user_info["name"]
+    email = user_info["email"]
+
+    # Check if user already exists
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        user = User(username=name, email=email, password="oauth")  # used dummy password for now, needs to be rectified in future
+        db.session.add(user)
+        db.session.commit()
+
+    # Log the user in
+    session['logged_in'] = True
+    session['user_id'] = user.id
+    session['username'] = user.username
+    flash('Logged in with Google!')
+
+    # NOTE: Should implement handling of accounts having same username
+
+    return redirect("/")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="localhost", port=5001, debug=True)
