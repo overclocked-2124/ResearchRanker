@@ -5,14 +5,18 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+from requests_oauthlib import OAuth2Session
 from bs4 import BeautifulSoup
 import ollama
 import markdown
 import os
+from dotenv import load_dotenv
 from werkzeug.utils import secure_filename
 from utils.pdf_reader import readPDF
 from utils.comparison import comparePDF,compareTemplate
 from utils.plagiarism_detector import extract_title,coreAPICall,download_pdf_from_url,extract_text_from_pdf_bytes,compute_similarity
+
+load_dotenv()
 
 # App configuration
 app = Flask(__name__, static_folder='static')
@@ -65,6 +69,26 @@ class LoginForm(FlaskForm):
 # Create tables (only once, after models are defined)
 with app.app_context():
     db.create_all()
+
+# Load Google OAuth credentials from environment variables
+CLIENT_ID = os.getenv('CLIENT_ID')
+CLIENT_SECRET = os.getenv('CLIENT_SECRET')
+
+# Google OAuth Setup
+AUTHORISATION_BASE_URL = "https://accounts.google.com/o/oauth2/auth"
+AUTH_TOKEN_URL = "https://oauth2.googleapis.com/token"
+REDIRECT_URL = "http://localhost:5001/callback"
+
+SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'openid'
+]
+
+# OAuth Setup for Development
+app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
+app.config['SESSION_COOKIE_HTTPONLY'] = True
+app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 
 # Routes
 @app.route('/')
@@ -260,7 +284,7 @@ def checkgrammer():
     
     #Add processing logic here
         
-    
+
     
 @app.route('/plagarism')
 def plagarism():
@@ -301,8 +325,12 @@ def check_plagarism():
     session['plagarism_result'] = round(float(plagarism_result) * 100, 2)
     os.remove(user_filepath)  
     return redirect(url_for('plagarism'))  
-    
+
+@app.route("/google-login")
+def google_login():
+    google = OAuth2Session(CLIENT_ID, token=session["oauth_token"])
+
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="localhost", port=5001, debug=True)
