@@ -78,6 +78,7 @@ CLIENT_SECRET = os.getenv('CLIENT_SECRET')
 AUTHORISATION_BASE_URL = "https://accounts.google.com/o/oauth2/auth"
 AUTH_TOKEN_URL = "https://oauth2.googleapis.com/token"
 REDIRECT_URL = "http://localhost:5001/callback"
+USER_INFO_URL = 'https://www.googleapis.com/oauth2/v1/userinfo'
 
 SCOPE = [
     'https://www.googleapis.com/auth/userinfo.profile',
@@ -328,9 +329,35 @@ def check_plagarism():
 
 @app.route("/google-login")
 def google_login():
-    google = OAuth2Session(CLIENT_ID, token=session["oauth_token"])
+    google = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URL, scope=SCOPE)
+    auth_url, state = google.authorization_url(AUTHORISATION_BASE_URL, access_type="offline", prompt="select_account")
+    session["oauth_state"] = state
+    return redirect(auth_url)
 
+@app.route("/callback")
+def callback():
+    google = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URL, state=session["oauth_state"])
+    token = google.fetch_token(AUTH_TOKEN_URL, client_secret=CLIENT_SECRET, authorization_response=request.url)
+    session["oauth_token"] = token
 
+    user_info = google.get(USER_INFO_URL).json()
+    name = user_info["name"]
+    email = user_info["email"]
+
+    # Check if user already exists
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        user = User(username=name, email=email, password="oauth")  # used dummy password for now, needs to be rectified in future
+        db.session.add(user)
+        db.session.commit()
+
+    # Log the user in
+    session['logged_in'] = True
+    session['user_id'] = user.id
+    session['username'] = user.username
+    flash('Logged in with Google!')
+
+    return redirect("/")
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5001, debug=True)
