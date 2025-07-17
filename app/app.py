@@ -87,6 +87,7 @@ SCOPE = [
 ]
 
 # OAuth Setup for Development
+os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
 app.config['SESSION_COOKIE_SECURE'] = False  # Set to True in production with HTTPS
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
@@ -325,9 +326,9 @@ def check_plagarism():
     plagarism_result=compute_similarity(user_text,downloaded_text)
     session['plagarism_result'] = round(float(plagarism_result) * 100, 2)
     os.remove(user_filepath)  
-    return redirect(url_for('plagarism'))  
+    return redirect(url_for('plagarism'))
 
-@app.route("/google-login")
+@app.route("/google_login")
 def google_login():
     google = OAuth2Session(CLIENT_ID, redirect_uri=REDIRECT_URL, scope=SCOPE)
     auth_url, state = google.authorization_url(AUTHORISATION_BASE_URL, access_type="offline", prompt="select_account")
@@ -356,6 +357,8 @@ def callback():
     session['user_id'] = user.id
     session['username'] = user.username
     flash('Logged in with Google!')
+
+    # NOTE: Should implement handling of accounts having same username
 
     return redirect("/")
 
